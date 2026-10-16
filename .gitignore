@@ -1,12 +1,45 @@
-node_modules/
-dist/
-.angular/
-.firebase/
-.firebaserc
+# Dependencies and build output (also ignore symlinked dependencies)
+/node_modules
+/dist
+/out-tsc
+/.angular
+/coverage
+
+# Credentials and local environment
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*service-account*.json
+*serviceAccount*.json
+*firebase-adminsdk*.json
+credentials.json
+credentials.*.json
+secrets.json
+secrets.*.json
+
+# Firebase local state
+/.firebase
+/.firebaserc
+firebase-debug.log*
+
+# Local tools and editor state
+/.agents
+/.aider-desk
+/.serena
+/.vscode
+/.idea
+/skills-lock.json
+/AGENTS.md
+/docs/superpowers
+/art-direction
+/prototypes
+
+# Logs, temporary files, and OS state
 *.log
+/tmp
 .DS_Store
-.vscode/
-.idea/
+Thumbs.db
