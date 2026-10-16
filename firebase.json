@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "dist/portfolio/browser",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "**/*.@(js|css|woff2|png|jpg|jpeg|webp|avif|svg)",
+        "headers": [{ "key": "Cache-Control", "value": "public,max-age=31536000,immutable" }]
+      },
+      {
+        "regex": "^/[^.]*(\\.html)?$",
+        "headers": [{ "key": "Cache-Control", "value": "public,max-age=0,must-revalidate" }]
+      },
+      {
+        "source": "@(sitemap.xml|rss.xml|robots.txt)",
+        "headers": [{ "key": "Cache-Control", "value": "public,max-age=300" }]
+      }
+    ]
+  }
+}
