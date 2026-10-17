@@ -12,6 +12,13 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home/home.page').then((module) => module.HomePage),
   },
   {
+    path: 'engineering',
+    loadComponent: () =>
+      import('./features/engineering/engineering-index.page').then(
+        (module) => module.EngineeringIndexPage,
+      ),
+  },
+  {
     path: 'engineering/:slug',
     loadComponent: () =>
       import('./features/engineering/engineering.page').then((module) => module.EngineeringPage),

@@ -16,9 +16,12 @@ import { AnchorTrackingDiagramComponent } from '../../shared/anchor-tracking-dia
     @if (study(); as item) {
       <article class="project-study engineering-study">
         <header class="project-study__header">
-          <a class="article-back" routerLink="/" fragment="engineering">← Engineering studies</a>
+          <a class="article-back" routerLink="/engineering">← Engineering studies</a>
           <p class="eyebrow">
-            {{ item.category }} / {{ item.experience ? 'Case study' : 'Design study' }}
+            {{ item.category }} /
+            {{
+              item.experiment ? 'Lab experiment' : item.experience ? 'Case study' : 'Design study'
+            }}
           </p>
           <h1>{{ item.title }}</h1>
           <p class="project-study__summary">{{ item.summary }}</p>
@@ -42,9 +45,28 @@ import { AnchorTrackingDiagramComponent } from '../../shared/anchor-tracking-dia
                 <li>{{ step.title }}</li>
               }
             </ul>
-            <span>Principles · Tradeoffs · Failure scenarios</span>
+            <span>{{
+              item.experiment
+                ? 'Runnable fixture · Recorded samples · Measurement limits'
+                : 'Principles · Tradeoffs · Failure scenarios'
+            }}</span>
           }
         </aside>
+        @if (item.experiment) {
+          <section class="study-experiment" aria-labelledby="experiment-title">
+            <h2 id="experiment-title">Inspect the experiment</h2>
+            <p>
+              Two scheduling strategies, identical computation. Recorded local results are available
+              inside the lab.
+            </p>
+            <nav aria-label="Performance experiment">
+              <a href="/performance-lab/?mode=baseline">Run baseline ↗</a>
+              <a href="/performance-lab/?mode=optimized">Run optimized ↗</a>
+              <a href="/performance-lab/results.json">Raw measurements ↗</a>
+              <a href="/performance-lab/README.md">Reproduce the test ↗</a>
+            </nav>
+          </section>
+        }
         @if (item.slug === 'opencv-anchored-annotations') {
           <app-anchor-tracking-diagram />
         }
@@ -64,7 +86,7 @@ import { AnchorTrackingDiagramComponent } from '../../shared/anchor-tracking-dia
       <section class="not-found">
         <p class="eyebrow">Study unavailable</p>
         <h1>This study could not be found.</h1>
-        <a class="text-link" routerLink="/" fragment="engineering"
+        <a class="text-link" routerLink="/engineering"
           >Return to engineering studies <span>↗</span></a
         >
       </section>

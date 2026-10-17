@@ -1,7 +1,9 @@
 import type { EngineeringStudy } from '../models/study.models';
+import { webPerformance } from './web-performance.data';
 import { opencvAnchoredAnnotations } from './opencv-anchored-annotations.data';
 
 export const engineeringStudies: readonly EngineeringStudy[] = [
+  webPerformance,
   {
     slug: 'reactive-consistency',
     title: 'Reactive consistency starts with ownership',

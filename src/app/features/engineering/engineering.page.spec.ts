@@ -24,6 +24,13 @@ describe('EngineeringPage', () => {
       const root = fixture.nativeElement as HTMLElement;
       expect(root.querySelector('h1')?.textContent).toBe(study.title);
       expect(root.querySelectorAll('.study-section')).toHaveLength(8);
+      if (study.experiment) {
+        expect(root.querySelector('.project-study__header .eyebrow')?.textContent).toContain(
+          'Lab experiment',
+        );
+        expect(root.querySelectorAll('.study-experiment a')).toHaveLength(4);
+        expect(root.querySelector('a[href="/performance-lab/results.json"]')).toBeTruthy();
+      }
       if (study.slug === 'opencv-anchored-annotations') {
         expect(root.querySelectorAll('app-anchor-tracking-diagram svg[role="img"]')).toHaveLength(
           4,

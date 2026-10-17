@@ -14,12 +14,13 @@ describe('public engineering studies', () => {
   });
   it('keeps the authored routes stable and unique', () => {
     expect(engineeringStudies.map(({ slug }) => slug)).toEqual([
+      'web-performance',
       'reactive-consistency',
       'resilient-real-time-sessions',
       'ai-interface-state',
       'opencv-anchored-annotations',
     ]);
-    expect(new Set(engineeringStudies.map(({ slug }) => slug)).size).toBe(4);
+    expect(new Set(engineeringStudies.map(({ slug }) => slug)).size).toBe(5);
   });
 
   it('provides distinct section anchors without colliding with shared study navigation', () => {
@@ -36,7 +37,10 @@ describe('public engineering studies', () => {
 
   it('clearly scopes conceptual guidance and supplies reviewable design artifacts', () => {
     for (const study of engineeringStudies) {
-      if (study.experience) {
+      if (study.experiment) {
+        expect(study.scopeNote).toContain('Implemented lab study');
+        expect(study.scopeNote).toContain('not production results');
+      } else if (study.experience) {
         expect(study.experience.contribution).toContain('Designed and implemented');
         expect(study.experience.implemented).toHaveLength(4);
         expect(study.scopeNote).toContain('not a verified record');
@@ -62,7 +66,11 @@ describe('public engineering studies', () => {
   });
 
   it('covers stale results, incomplete recovery, and uncertain action outcomes', () => {
-    const [reactivity, realtime, ai] = engineeringStudies;
+    const reactivity = engineeringStudies.find((study) => study.slug === 'reactive-consistency')!;
+    const realtime = engineeringStudies.find(
+      (study) => study.slug === 'resilient-real-time-sessions',
+    )!;
+    const ai = engineeringStudies.find((study) => study.slug === 'ai-interface-state')!;
     expect(reactivity.checks.some(({ scenario }) => scenario.includes('A resolves'))).toBe(true);
     expect(reactivity.checks.some(({ scenario }) => scenario.includes('Permissions change'))).toBe(
       true,

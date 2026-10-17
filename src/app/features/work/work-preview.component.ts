@@ -63,12 +63,19 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
             cases, competing approaches, and the boundaries that matter.
           </p>
         </header>
+        <p><a class="text-link" href="/engineering">Browse all engineering studies ↗</a></p>
         <div class="engineering-index__grid">
           @for (study of studies; track study.slug; let index = $index) {
             <a class="engineering-card" [href]="'/engineering/' + study.slug">
               <div class="engineering-card__meta">
                 <span>{{ (index + 1).toString().padStart(2, '0') }} / {{ study.category }}</span
-                ><span>{{ study.experience ? 'Case study' : 'Design study' }}</span>
+                ><span>{{
+                  study.experiment
+                    ? 'Lab experiment'
+                    : study.experience
+                      ? 'Case study'
+                      : 'Design study'
+                }}</span>
               </div>
               <h3>{{ study.title }}</h3>
               <p>{{ study.summary }}</p>

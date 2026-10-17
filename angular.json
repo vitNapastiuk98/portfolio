@@ -33,6 +33,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "manrope-latin-wght-normal.woff2",
+                "input": "node_modules/@fontsource-variable/manrope/files",
+                "output": "performance-lab/fonts"
+              },
+              {
+                "glob": "syne-latin-wght-normal.woff2",
+                "input": "node_modules/@fontsource-variable/syne/files",
+                "output": "performance-lab/fonts"
+              },
+              {
+                "glob": "ibm-plex-mono-latin-400-normal.woff2",
+                "input": "node_modules/@fontsource/ibm-plex-mono/files",
+                "output": "performance-lab/fonts"
               }
             ],
             "styles": ["src/styles.scss", "src/visual-repair.scss"]

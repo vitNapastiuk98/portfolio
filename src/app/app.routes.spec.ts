@@ -25,5 +25,6 @@ describe('application routes', () => {
     expect(routes.some(({ path }) => path === 'blog/:slug')).toBe(true);
     expect(routes.some(({ path }) => path === 'work/:slug')).toBe(true);
     expect(routes.some(({ path }) => path === 'engineering/:slug')).toBe(true);
+    expect(routes.some(({ path }) => path === 'engineering')).toBe(true);
   });
 });

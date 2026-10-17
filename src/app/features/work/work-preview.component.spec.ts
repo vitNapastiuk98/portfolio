@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { WorkPreviewComponent } from './work-preview.component';
+import { engineeringStudies } from '../../data/engineering-studies.data';
 import { publicProjects } from '../../data/projects.data';
 
 describe('WorkPreviewComponent', () => {
@@ -20,7 +21,8 @@ describe('WorkPreviewComponent', () => {
       stages[0].querySelector('a[href="https://www.youtube.com/watch?v=8PpHj_BgPuM"]')?.textContent,
     ).toContain('Watch demo');
     expect(stages[0].querySelector('.study-featured')?.textContent).toContain('Shipped on Android');
-    expect(root.querySelectorAll('.engineering-card')).toHaveLength(4);
+    expect(root.querySelectorAll('.engineering-card')).toHaveLength(engineeringStudies.length);
+    expect(root.querySelector('a[href="/engineering"]')).toBeTruthy();
     publicProjects.forEach((project) => {
       const stage = Array.from(stages).find((element) =>
         element.querySelector(`a[href="/work/${project.slug}"]`),

@@ -16,6 +16,14 @@ const projectSlugs = [...sitemap.matchAll(/<loc>[^<]+\/work\/([^<]+)<\/loc>/g)].
   (match) => match[1],
 );
 const expected = [
+  'engineering/index.html',
+  'engineering/web-performance/index.html',
+  'performance-lab/index.html',
+  'performance-lab/results.json',
+  'performance-lab/README.md',
+  'performance-lab/fonts/manrope-latin-wght-normal.woff2',
+  'performance-lab/fonts/syne-latin-wght-normal.woff2',
+  'performance-lab/fonts/ibm-plex-mono-latin-400-normal.woff2',
   'engineering/reactive-consistency/index.html',
   'engineering/resilient-real-time-sessions/index.html',
   'engineering/ai-interface-state/index.html',

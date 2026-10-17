@@ -34,6 +34,7 @@ export interface StudyContent {
 }
 
 export interface EngineeringStudy extends StudyContent {
+  readonly experiment?: boolean;
   readonly flow: StudyFlow;
   readonly decisions: readonly StudyDecision[];
   readonly checks: readonly StudyCheck[];

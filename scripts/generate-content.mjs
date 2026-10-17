@@ -224,8 +224,10 @@ export function buildRouteEntries(posts) {
   ];
   return [
     { route: '', date: undefined },
+    { route: 'engineering', date: undefined },
     ...projectSlugs.map((slug) => ({ route: `work/${slug}`, date: undefined })),
     ...[
+      'web-performance',
       'reactive-consistency',
       'resilient-real-time-sessions',
       'ai-interface-state',

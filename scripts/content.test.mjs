@@ -36,10 +36,12 @@ test('published filtering excludes drafts and orders newest first', () => {
 test('sitemap routes expose only the homepage and public detail content', () => {
   assert.deepEqual(buildRouteEntries([{ slug: 'article', date: '2026-01-01' }]), [
     { route: '', date: undefined },
+    { route: 'engineering', date: undefined },
     { route: 'work/ts-reactivity-engine', date: undefined },
     { route: 'work/visual-kapital', date: undefined },
     { route: 'work/task-around-website', date: undefined },
     { route: 'work/white-label-restaurant', date: undefined },
+    { route: 'engineering/web-performance', date: undefined },
     { route: 'engineering/reactive-consistency', date: undefined },
     { route: 'engineering/resilient-real-time-sessions', date: undefined },
     { route: 'engineering/ai-interface-state', date: undefined },

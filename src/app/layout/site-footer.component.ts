@@ -15,7 +15,7 @@ import { profile } from '../data/profile.data';
         <a [href]="profile.github" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
         <a [href]="profile.linkedin" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
         <a [href]="profile.medium" target="_blank" rel="noreferrer">Medium <span>↗</span></a>
-        <a routerLink="/" fragment="engineering">Engineering studies <span>↗</span></a>
+        <a routerLink="/engineering">Engineering studies <span>↗</span></a>
         <a [href]="'mailto:' + profile.email">Email <span>↗</span></a>
       </div>
       <p class="footer-meta">© {{ year }} · Built with Angular and Three.js.</p>
