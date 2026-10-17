@@ -61,8 +61,8 @@ export class SiteHeaderComponent {
   readonly navigation = [
     { index: '01', label: 'Expertise', fragment: 'expertise' },
     { index: '02', label: 'Work', fragment: 'work' },
-    { index: '03', label: 'Experience', fragment: 'experience' },
-    { index: '04', label: 'Writing', fragment: 'writing' },
+    { index: '03', label: 'Engineering & Writing', fragment: 'engineering' },
+    { index: '04', label: 'Experience', fragment: 'experience' },
     { index: '05', label: 'Contact', fragment: 'contact' },
   ] as const;
 

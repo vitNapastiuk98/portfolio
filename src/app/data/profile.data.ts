@@ -5,6 +5,7 @@ export const profile = {
   title: 'Senior Software Engineer',
   location: 'Rome, Italy',
   email: 'vit.napastiuk@gmail.com',
+  resumeUrl: '/Vitalii_Napastiuk_Full_Stack_CV_Portfolio.pdf',
   github: 'https://github.com/vitNapastiuk98',
   linkedin: 'https://www.linkedin.com/in/nap-vitalii/',
   medium: 'https://medium.com/@vit.napastiuk',

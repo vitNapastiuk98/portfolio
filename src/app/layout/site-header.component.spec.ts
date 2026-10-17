@@ -18,8 +18,8 @@ describe('SiteHeaderComponent', () => {
     expect(links.map((link) => link.getAttribute('href'))).toEqual([
       '/#expertise',
       '/#work',
+      '/#engineering',
       '/#experience',
-      '/#writing',
       '/#contact',
     ]);
     expect(root.querySelector<HTMLAnchorElement>('.header-identity')?.getAttribute('href')).toBe(

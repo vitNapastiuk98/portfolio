@@ -1,8 +1,11 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, input } from '@angular/core';
+import type { TemplateRef } from '@angular/core';
 import type { StudyContent } from '../models/study.models';
 
 @Component({
   selector: 'app-study-body',
+  imports: [NgTemplateOutlet],
   host: { class: 'study-body' },
   template: `
     <aside class="study-nav">
@@ -14,16 +17,16 @@ import type { StudyContent } from '../models/study.models';
             >{{ section.label }}
           </a>
         }
-        @if (study().flow) {
+        @if (!articleMode() && study().flow) {
           <a [attr.href]="path() + '#flow'"><span>↳</span>System flow</a>
         }
-        @if (study().decisions) {
+        @if (!articleMode() && study().decisions) {
           <a [attr.href]="path() + '#decisions'"><span>↳</span>Decisions & tradeoffs</a>
         }
-        @if (study().checks) {
+        @if (!articleMode() && study().checks) {
           <a [attr.href]="path() + '#validation'"><span>↳</span>Failure cases & validation</a>
         }
-        @if (study().takeaways) {
+        @if (!articleMode() && study().takeaways) {
           <a [attr.href]="path() + '#takeaways'"><span>↳</span>Engineering lessons</a>
         }
         <a [attr.href]="path() + '#references'"><span>↳</span>Technical references</a>
@@ -33,7 +36,9 @@ import type { StudyContent } from '../models/study.models';
     <div class="study-content">
       <div class="study-opening">
         <p class="study-lead">{{ study().lead }}</p>
-        <p class="study-scope-note">{{ study().scopeNote }}</p>
+        @if (!articleMode() && study().scopeNote) {
+          <p class="study-scope-note">{{ study().scopeNote }}</p>
+        }
       </div>
       @for (section of study().sections; track section.id; let index = $index) {
         <section class="study-section" [attr.aria-labelledby]="section.id">
@@ -49,10 +54,64 @@ import type { StudyContent } from '../models/study.models';
               }
             </ul>
           }
+          @for (example of section.codeExamples ?? []; track example.title) {
+            <div class="study-code">
+              <h3>{{ example.title }}</h3>
+              <pre
+                tabindex="0"
+                [attr.aria-label]="example.title"
+              ><code>{{ example.code }}</code></pre>
+            </div>
+            @if (example.explanation) {
+              <p>{{ example.explanation }}</p>
+            }
+          }
+          @if (section.table; as table) {
+            <div
+              class="study-table-wrap"
+              tabindex="0"
+              role="region"
+              [attr.aria-label]="table.caption"
+            >
+              <table class="study-decisions">
+                <caption>
+                  {{
+                    table.caption
+                  }}
+                </caption>
+                <thead>
+                  <tr>
+                    @for (column of table.columns; track column) {
+                      <th scope="col">{{ column }}</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of table.rows; track $index) {
+                    <tr>
+                      @for (cell of row; track $index; let first = $first) {
+                        @if (first) {
+                          <th scope="row">{{ cell }}</th>
+                        } @else {
+                          <td>{{ cell }}</td>
+                        }
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+          @if (sectionExample(); as exampleTemplate) {
+            <ng-container
+              [ngTemplateOutlet]="exampleTemplate"
+              [ngTemplateOutletContext]="{ $implicit: section.id }"
+            />
+          }
         </section>
       }
 
-      @if (study().flow; as flow) {
+      @if (!articleMode() && study().flow; as flow) {
         <section class="study-section" aria-labelledby="flow">
           <p class="eyebrow">System flow</p>
           <h2 id="flow">{{ flow.title }}</h2>
@@ -68,7 +127,7 @@ import type { StudyContent } from '../models/study.models';
         </section>
       }
 
-      @if (study().decisions; as decisions) {
+      @if (!articleMode() && study().decisions; as decisions) {
         <section class="study-section" aria-labelledby="decisions">
           <p class="eyebrow">Decision record</p>
           <h2 id="decisions">Design decisions and tradeoffs</h2>
@@ -104,7 +163,7 @@ import type { StudyContent } from '../models/study.models';
         </section>
       }
 
-      @if (study().checks; as checks) {
+      @if (!articleMode() && study().checks; as checks) {
         <section class="study-section" aria-labelledby="validation">
           <p class="eyebrow">Failure cases & validation</p>
           <h2 id="validation">Failure scenarios to validate</h2>
@@ -123,7 +182,7 @@ import type { StudyContent } from '../models/study.models';
         </section>
       }
 
-      @if (study().takeaways; as takeaways) {
+      @if (!articleMode() && study().takeaways; as takeaways) {
         <section class="study-section" aria-labelledby="takeaways">
           <p class="eyebrow">Reflection</p>
           <h2 id="takeaways">Engineering lessons</h2>
@@ -155,6 +214,8 @@ import type { StudyContent } from '../models/study.models';
   `,
 })
 export class StudyBodyComponent {
+  readonly articleMode = input(false);
+  readonly sectionExample = input<TemplateRef<{ $implicit: string }> | null>(null);
   readonly study = input.required<StudyContent>();
   readonly path = input.required<string>();
 }

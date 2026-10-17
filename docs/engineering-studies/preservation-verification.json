@@ -1,0 +1,24 @@
+{
+  "verifiedOn": "2026-10-17",
+  "protectedFileCount": 15,
+  "protectedFiles": {
+    "src/styles.scss": "a389a18e49bc7b40a45d107411cc848f1823a163b086a0915de92b24a3e9cc45",
+    "src/visual-repair.scss": "70b97e6e303c8c6556581769ae0f0ae90bfde5719ddb2e560818a5c92e5c81b1",
+    "src/app/features/expertise/expertise-section.component.ts": "98792127442d1ca96776cd2025e419866272fd68c7defdd1852362ef7374da1c",
+    "src/app/features/experience/experience-section.component.ts": "cf823c977108ce43cb7e759d00263bd1b5955e06669f1cac0ecf1cf5ec068ade",
+    "src/app/data/profile.data.ts": "a548ebe0ecfa7cd7bbc04a6b7baedd6369c4fe6cf1e2c0822b59cad63a7f4f60",
+    "src/app/data/projects.data.ts": "3ea67098976cd0a28d27e3afd5c763e92cdea43ba614ceacc2113e5429c47f8f",
+    "src/app/data/project-studies.data.ts": "e22cadef2817106f4c9b0bdf2e429edea1fcffc78020f9ee9d19b3f761226596",
+    "src/app/features/work/work.page.ts": "f0a3116ca1cdac8268017a5ca59898e40153a9b0158f4cf95d1d5f52003a8b46",
+    "src/app/features/blog/article.page.ts": "5f0217b679c805c89ca9e25296880befd6e5fe10c196d3fa6959d8ed323f4bb4",
+    "src/app/layout/site-footer.component.ts": "e58864381acfc5ea66f6fd078553060c9d103919921aa0f28ca5b136de3b8697",
+    "src/app/shared/project-visual.component.ts": "ee54ab1b149f8c09c7c9382379444809b539fdd1d9e82a96bf3681c0d113e7c3",
+    "src/app/shared/hero-scene.component.ts": "a7add25a696870deec071e8f12bd268b114cf54d02be7827c48d8a6847e080b3",
+    "content/blog/angular-signals-vs-rxjs.md": "987e419d8541dea5ba87b43434fb3fa474d6948fffb068061a911812db123f07",
+    "content/blog/bypass-angular-interceptors.md": "8563a7700a9598119e5026c7a7a006b3c1acdd1b7c200e5b5c84b2bd07a794c3",
+    "content/blog/deconstructing-reactivity.md": "48e4dcf0df9d81e229437affc298f6f2ad150114ef9482a0a93e85c8320df0b6"
+  },
+  "homepage": "Exact source equality after removing only import, component registration and new section insertion",
+  "selectedWork": "Exact source equality after removing only nested Engineering Studies block and its data import/field; blank-line normalization only",
+  "originalEngineeringStudies": "Original four-record source suffix unchanged"
+}

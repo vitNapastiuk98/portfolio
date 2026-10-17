@@ -4,6 +4,17 @@ export interface StudySection {
   readonly title: string;
   readonly paragraphs: readonly string[];
   readonly bullets?: readonly string[];
+  readonly codeExamples?: readonly {
+    readonly title: string;
+    readonly language?: string;
+    readonly code: string;
+    readonly explanation?: string;
+  }[];
+  readonly table?: {
+    readonly caption: string;
+    readonly columns: readonly string[];
+    readonly rows: readonly (readonly string[])[];
+  };
 }
 
 export interface StudyFlow {
@@ -34,6 +45,16 @@ export interface StudyContent {
 }
 
 export interface EngineeringStudy extends StudyContent {
+  readonly presentation?: 'article';
+  readonly studyType?: 'experiment' | 'implemented' | 'conceptual';
+  readonly technologies?: readonly string[];
+  readonly problem?: string;
+  readonly shortTitle?: string;
+  readonly evidenceSummary?: string;
+  readonly measurementSummary?: string;
+  readonly demo?: { readonly label: string; readonly href: string };
+  readonly relatedSlugs?: readonly string[];
+  readonly updatedOn?: string;
   readonly experiment?: boolean;
   readonly flow: StudyFlow;
   readonly decisions: readonly StudyDecision[];

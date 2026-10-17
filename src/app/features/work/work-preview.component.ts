@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RevealDirective } from '../../animations/reveal.directive';
 import { publicProjects } from '../../data/projects.data';
 import { ProjectVisualComponent } from '../../shared/project-visual.component';
-import { engineeringStudies } from '../../data/engineering-studies.data';
 
 @Component({
   selector: 'app-work-preview',
@@ -52,45 +51,6 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
           </div>
         </article>
       }
-      <section id="engineering" class="engineering-index" aria-labelledby="engineering-title">
-        <header class="showcase-heading">
-          <div>
-            <p class="showcase-kicker">Beyond the projects</p>
-            <h2 id="engineering-title">Engineering Decisions &amp; Tradeoffs</h2>
-          </div>
-          <p>
-            Design studies on consistency, recovery, and trustworthy interfaces. Concrete failure
-            cases, competing approaches, and the boundaries that matter.
-          </p>
-        </header>
-        <p><a class="text-link" href="/engineering">Browse all engineering studies ↗</a></p>
-        <div class="engineering-index__grid">
-          @for (study of studies; track study.slug; let index = $index) {
-            <a class="engineering-card" [href]="'/engineering/' + study.slug">
-              <div class="engineering-card__meta">
-                <span>{{ (index + 1).toString().padStart(2, '0') }} / {{ study.category }}</span
-                ><span>{{
-                  study.experiment
-                    ? 'Lab experiment'
-                    : study.experience
-                      ? 'Case study'
-                      : 'Design study'
-                }}</span>
-              </div>
-              <h3>{{ study.title }}</h3>
-              <p>{{ study.summary }}</p>
-              <div class="engineering-card__flow" aria-hidden="true">
-                @for (step of study.flow.steps; track step.title) {
-                  <span>{{ step.title }}</span>
-                }
-              </div>
-              <span class="engineering-card__link"
-                >Explore the study <i aria-hidden="true">↗</i></span
-              >
-            </a>
-          }
-        </div>
-      </section>
     </section>
   `,
 })
@@ -98,5 +58,4 @@ export class WorkPreviewComponent {
   readonly projects = [...publicProjects].sort(
     (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
   );
-  readonly studies = engineeringStudies;
 }

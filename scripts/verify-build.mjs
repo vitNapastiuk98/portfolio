@@ -18,6 +18,9 @@ const projectSlugs = [...sitemap.matchAll(/<loc>[^<]+\/work\/([^<]+)<\/loc>/g)].
 const expected = [
   'engineering/index.html',
   'engineering/web-performance/index.html',
+  'engineering/accessibility/index.html',
+  'engineering/angular-architectures/index.html',
+  'engineering/angular-dependency-injection/index.html',
   'performance-lab/index.html',
   'performance-lab/results.json',
   'performance-lab/README.md',
@@ -103,18 +106,34 @@ for (const url of urls) {
         document.querySelectorAll('.study-section').length >= 8,
         `${url}: substantial study sections`,
       );
+      if (!document.querySelector('.engineering-article'))
+        assert.ok(
+          document.querySelectorAll('.study-flow li').length >= 4,
+          `${url}: semantic system flow`,
+        );
+      if (!document.querySelector('.engineering-article'))
+        assert.ok(
+          document.querySelectorAll('.study-decisions tbody tr').length >= 3,
+          `${url}: decision tradeoffs`,
+        );
+      if (!document.querySelector('.engineering-article'))
+        assert.ok(
+          document.querySelectorAll('.study-checks li').length >= 4,
+          `${url}: failure scenarios`,
+        );
+    }
+    if (document.querySelector('.engineering-article')) {
+      assert.ok(document.querySelectorAll('figure').length > 0, `${url}: explanatory figures`);
       assert.ok(
-        document.querySelectorAll('.study-flow li').length >= 4,
-        `${url}: semantic system flow`,
+        document.querySelectorAll('.study-code').length > 0,
+        `${url}: Angular code examples`,
       );
-      assert.ok(
-        document.querySelectorAll('.study-decisions tbody tr').length >= 3,
-        `${url}: decision tradeoffs`,
+      assert.equal(
+        document.querySelector('.study-scope-note'),
+        null,
+        `${url}: article presentation`,
       );
-      assert.ok(
-        document.querySelectorAll('.study-checks li').length >= 4,
-        `${url}: failure scenarios`,
-      );
+      assert.equal(document.querySelector('.study-brief'), null, `${url}: no project-status panel`);
     }
     for (const link of document.querySelectorAll('.study-nav a')) {
       const target = new URL(link.href, url);

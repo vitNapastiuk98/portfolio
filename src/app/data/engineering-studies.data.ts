@@ -1,9 +1,15 @@
+import { angularDependencyInjection } from './angular-dependency-injection.data';
+import { accessibilityStudy } from './accessibility.data';
+import { angularArchitecturesStudy } from './angular-architectures.data';
 import type { EngineeringStudy } from '../models/study.models';
 import { webPerformance } from './web-performance.data';
 import { opencvAnchoredAnnotations } from './opencv-anchored-annotations.data';
 
 export const engineeringStudies: readonly EngineeringStudy[] = [
   webPerformance,
+  accessibilityStudy,
+  angularArchitecturesStudy,
+  angularDependencyInjection,
   {
     slug: 'reactive-consistency',
     title: 'Reactive consistency starts with ownership',

@@ -15,19 +15,24 @@ describe('public engineering studies', () => {
   it('keeps the authored routes stable and unique', () => {
     expect(engineeringStudies.map(({ slug }) => slug)).toEqual([
       'web-performance',
+      'accessibility',
+      'angular-architectures',
+      'angular-dependency-injection',
       'reactive-consistency',
       'resilient-real-time-sessions',
       'ai-interface-state',
       'opencv-anchored-annotations',
     ]);
-    expect(new Set(engineeringStudies.map(({ slug }) => slug)).size).toBe(5);
+    expect(new Set(engineeringStudies.map(({ slug }) => slug)).size).toBe(
+      engineeringStudies.length,
+    );
   });
 
   it('provides distinct section anchors without colliding with shared study navigation', () => {
     const sharedAnchors = ['flow', 'decisions', 'validation', 'takeaways', 'references'];
     for (const study of engineeringStudies) {
       const anchors = study.sections.map(({ id }) => id);
-      expect(anchors).toHaveLength(3);
+      expect(anchors.length).toBeGreaterThanOrEqual(3);
       expect(new Set(anchors).size).toBe(anchors.length);
       expect(anchors.every((id) => /^[a-z]+(?:-[a-z]+)*$/.test(id))).toBe(true);
       expect(anchors.some((id) => sharedAnchors.includes(id))).toBe(false);
@@ -37,27 +42,40 @@ describe('public engineering studies', () => {
 
   it('clearly scopes conceptual guidance and supplies reviewable design artifacts', () => {
     for (const study of engineeringStudies) {
-      if (study.experiment) {
+      if (study.presentation === 'article') {
+        expect(study.sections.length).toBeGreaterThanOrEqual(6);
+        expect(study.sections.some((section) => section.codeExamples?.length)).toBe(true);
+        expect(study.references.length).toBeGreaterThanOrEqual(2);
+        continue;
+      }
+      if (study.studyType === 'implemented') {
+        expect(study.problem).toBeTruthy();
+        expect(study.technologies?.length).toBeGreaterThan(0);
+        expect(study.scopeNote).toContain('study');
+      } else if (study.experiment) {
         expect(study.scopeNote).toContain('Implemented lab study');
         expect(study.scopeNote).toContain('not production results');
       } else if (study.experience) {
         expect(study.experience.contribution).toContain('Designed and implemented');
         expect(study.experience.implemented).toHaveLength(4);
         expect(study.scopeNote).toContain('not a verified record');
+      } else if (study.studyType === 'conceptual') {
+        expect(study.scopeNote).toContain('Technical design study');
+        expect(study.scopeNote).toContain('illustrative');
       } else {
         expect(study.scopeNote).toContain('Technical design study: conceptual guidance');
         expect(study.scopeNote).toContain('not a description of deployed client architecture');
       }
       expect(study.flow.steps).toHaveLength(4);
       expect(study.decisions.length).toBeGreaterThanOrEqual(3);
-      expect(study.decisions.length).toBeLessThanOrEqual(4);
+
       expect(study.decisions.every(({ choice, tradeoff }) => choice && tradeoff)).toBe(true);
       expect(study.checks.length).toBeGreaterThanOrEqual(4);
-      expect(study.checks.length).toBeLessThanOrEqual(5);
+
       expect(study.checks.every(({ scenario, expectation }) => scenario && expectation)).toBe(true);
-      expect(study.takeaways).toHaveLength(3);
+      expect(study.takeaways.length).toBeGreaterThanOrEqual(3);
       expect(study.references.length).toBeGreaterThanOrEqual(2);
-      expect(study.references.length).toBeLessThanOrEqual(3);
+
       for (const reference of study.references) {
         expect(new URL(reference.url).protocol).toBe('https:');
         expect(reference.label.length).toBeGreaterThan(0);

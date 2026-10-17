@@ -195,7 +195,7 @@
       .content-slot {
         margin-bottom: 24px;
       }
-      body[data-mode='optimized'] .content-slot {
+      body[data-reserved='true'] .content-slot {
         min-height: 260px;
       }
       #primary-content {
@@ -520,16 +520,22 @@
           padding-inline: 4px;
         }
         th {
-          font-size: 9px;
+          font-size: 11px;
         }
         td {
           font-size: 12px;
         }
       }
       @media (max-width: 480px) {
-        body[data-mode='optimized'] .content-slot {
+        body[data-reserved='true'] .content-slot {
           min-height: 320px;
         }
+      }
+      #measurements {
+        overflow-x: auto;
+      }
+      #measurements table {
+        min-width: 640px;
       }
     </style>
   </head>
@@ -556,6 +562,9 @@
       <nav class="mode-nav" aria-label="Experiment modes">
         <a href="?mode=baseline">Run baseline</a>
         <a href="?mode=optimized">Run optimized</a>
+        <a href="?mode=delay-only">Remove delay only</a>
+        <a href="?mode=reservation-only">Reserve space only</a>
+        <a href="?mode=scheduling-only">Yield work only</a>
       </nav>
       <p class="demo-instructions">
         <strong>Start here:</strong> choose Baseline, replay the content, and watch the Save report
@@ -598,7 +607,8 @@
             <p>
               Baseline delays the main content by 800 ms, does not reserve its space, and processes
               work in one task. Optimized renders it immediately, reserves space, and yields between
-              chunks. Both calculate the same checksum.
+              chunks. Every condition calculates the same checksum. The three “only” controls change
+              one baseline factor; optimized changes all three.
             </p>
             <p>
               This isolated HTML fixture uses the portfolio’s fonts and visual styling, but excludes
@@ -728,7 +738,13 @@ feedback.textContent = 'Saved';</code></pre></section>
           local presentation proxy, not INP. Compare it with full completion time: faster feedback
           does not mean less work.
         </p>
-        <div id="measurements" aria-live="polite"></div>
+        <div
+          id="measurements"
+          aria-live="polite"
+          tabindex="0"
+          role="region"
+          aria-label="Recorded performance results; scroll horizontally to compare"
+        ></div>
       </section>
       <footer class="lab-footer">
         <a href="/engineering">Explore engineering studies ↗</a>
@@ -736,8 +752,13 @@ feedback.textContent = 'Saved';</code></pre></section>
       </footer>
     </main>
     <script>
-      const mode =
-        new URLSearchParams(location.search).get('mode') === 'baseline' ? 'baseline' : 'optimized';
+      const requestedMode = new URLSearchParams(location.search).get('mode');
+      const modes = ['baseline', 'optimized', 'delay-only', 'reservation-only', 'scheduling-only'];
+      const mode = modes.includes(requestedMode) ? requestedMode : 'optimized';
+      const delayed = !['optimized', 'delay-only'].includes(mode);
+      const reserved = ['optimized', 'reservation-only'].includes(mode);
+      const cooperative = ['optimized', 'scheduling-only'].includes(mode);
+      document.body.dataset.reserved = String(reserved);
       document.body.dataset.mode = mode;
       document
         .querySelector(`.mode-nav a[href="?mode=${mode}"]`)
@@ -747,23 +768,19 @@ feedback.textContent = 'Saved';</code></pre></section>
       const replay = document.getElementById('replay-content');
       const contentObservation = document.getElementById('content-observation');
       document.getElementById('mode-explanation').textContent =
-        mode === 'baseline'
-          ? 'Delayed content. One blocking task.'
-          : 'Ready content. Room to respond.';
+        `${delayed ? '800 ms content delay' : 'Immediate content'} · ${reserved ? 'reserved space' : 'no reserved space'} · ${cooperative ? 'yielding work' : 'blocking work'}`;
       const reveal = () => {
         content.hidden = false;
+        document.body.dataset.contentReadyMs = String(performance.now());
         replay.disabled = false;
-        contentObservation.textContent =
-          mode === 'baseline'
-            ? 'The panel arrived after an injected 800 ms delay. It pushed Save report down because no space was reserved.'
-            : 'Content ready immediately. The panel has reserved space; Save report stays in place.';
+        contentObservation.textContent = `${delayed ? 'Panel arrived after the injected 800 ms delay.' : 'Content is ready immediately.'} ${reserved ? 'Space was reserved.' : 'No space was reserved; delayed arrival can move Save report.'}`;
       };
       const replayContent = () => {
         content.hidden = true;
         replay.disabled = true;
         contentObservation.textContent =
           'Waiting 800 ms… Watch where Save report sits before the panel arrives.';
-        if (mode === 'baseline') setTimeout(reveal, 800);
+        if (delayed) setTimeout(reveal, 800);
         else reveal();
       };
       replay.addEventListener('click', replayContent);
@@ -784,10 +801,9 @@ feedback.textContent = 'Saved';</code></pre></section>
         frameTime = null;
         completionTime = null;
         workProgress.value = 0;
-        workObservation.textContent =
-          mode === 'baseline'
-            ? 'Calculating in one task…'
-            : 'Calculating in chunks; the browser can update between them…';
+        workObservation.textContent = !cooperative
+          ? 'Calculating in one task…'
+          : 'Calculating in chunks; the browser can update between them…';
         const responseStarted = performance.now();
         requestAnimationFrame(() =>
           requestAnimationFrame(() => {
@@ -803,7 +819,7 @@ feedback.textContent = 'Saved';</code></pre></section>
         const count = 30000000;
         const chunkSize = mode === 'baseline' ? count : 1000000;
         for (let start = 0; start < count; start += chunkSize) {
-          if (mode === 'optimized') await new Promise((resolve) => setTimeout(resolve, 0));
+          if (cooperative) await new Promise((resolve) => setTimeout(resolve, 0));
           for (let i = start; i < Math.min(start + chunkSize, count); i++) {
             checksum += Math.sqrt(i) * (i % 17);
           }
@@ -835,6 +851,7 @@ feedback.textContent = 'Saved';</code></pre></section>
           for (const label of [
             'Mode',
             'LCP (ms)',
+            'Content ready (ms)',
             'CLS',
             'Response frame (ms)',
             'Work complete (ms)',
@@ -845,11 +862,12 @@ feedback.textContent = 'Saved';</code></pre></section>
             header.append(th);
           }
           const body = table.createTBody();
-          for (const mode of ['baseline', 'optimized']) {
+          for (const mode of modes) {
             const row = body.insertRow();
             for (const value of [
               mode,
               Math.round(report.medians[mode].lcpMs),
+              Math.round(report.medians[mode].contentReadyMs),
               report.medians[mode].cls.toFixed(3),
               Math.round(report.medians[mode].responseFrameMs),
               Math.round(report.medians[mode].completionMs),

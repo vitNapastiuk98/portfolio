@@ -228,6 +228,9 @@ export function buildRouteEntries(posts) {
     ...projectSlugs.map((slug) => ({ route: `work/${slug}`, date: undefined })),
     ...[
       'web-performance',
+      'accessibility',
+      'angular-architectures',
+      'angular-dependency-injection',
       'reactive-consistency',
       'resilient-real-time-sessions',
       'ai-interface-state',

@@ -23,8 +23,10 @@ describe('EngineeringPage', () => {
       fixture.detectChanges();
       const root = fixture.nativeElement as HTMLElement;
       expect(root.querySelector('h1')?.textContent).toBe(study.title);
-      expect(root.querySelectorAll('.study-section')).toHaveLength(8);
-      if (study.experiment) {
+      expect(root.querySelectorAll('.study-section')).toHaveLength(
+        study.sections.length + (study.presentation === 'article' ? 1 : 5),
+      );
+      if (study.experiment && study.presentation !== 'article') {
         expect(root.querySelector('.project-study__header .eyebrow')?.textContent).toContain(
           'Lab experiment',
         );
@@ -54,13 +56,34 @@ describe('EngineeringPage', () => {
           'Failure scenarios to validate',
         );
       }
-      expect(root.querySelectorAll('.study-related a')).toHaveLength(engineeringStudies.length - 1);
+      expect(root.querySelectorAll('.study-related a')).toHaveLength(
+        engineeringStudies.filter(
+          (other) =>
+            other.slug !== study.slug &&
+            (!study.relatedSlugs || study.relatedSlugs.includes(other.slug)),
+        ).length,
+      );
+      if (study.presentation === 'article') {
+        expect(root.querySelector('.engineering-article')).toBeTruthy();
+        expect(root.querySelector('.project-study__header .eyebrow')?.textContent).toContain(
+          'Article',
+        );
+        expect(root.querySelector('.study-brief')).toBeNull();
+        expect(root.querySelector('.study-scope-note')).toBeNull();
+        expect(root.querySelector('.study-experiment')).toBeNull();
+        expect(root.querySelector('app-accessibility-examples')).toBeNull();
+        expect(root.querySelector('app-angular-performance-lab')).toBeNull();
+        expect(root.querySelectorAll('figure').length).toBeGreaterThan(0);
+        expect(root.querySelectorAll('.study-code').length).toBeGreaterThan(0);
+      }
       const schema = JSON.parse(
         TestBed.inject(DOCUMENT).getElementById('engineering-study-schema')!.textContent!,
       );
       expect(schema['@type']).toBe('TechArticle');
       expect(schema.headline).toBe(study.title);
-      expect(root.querySelector('.study-scope-note')?.textContent).toContain('study');
+      if (study.presentation !== 'article') {
+        expect(root.querySelector('.study-scope-note')?.textContent).toContain('study');
+      }
       expect(
         TestBed.inject(DOCUMENT).querySelector('link[rel="canonical"]')?.getAttribute('href'),
       ).toContain(`/engineering/${study.slug}`);

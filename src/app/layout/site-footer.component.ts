@@ -12,6 +12,9 @@ import { profile } from '../data/profile.data';
         <p>Senior Software Engineer · Rome, Italy</p>
       </div>
       <div class="footer-links" aria-label="Professional links">
+        <a [href]="profile.resumeUrl" target="_blank" rel="noreferrer"
+          >Resume (PDF) <span>↗</span></a
+        >
         <a [href]="profile.github" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
         <a [href]="profile.linkedin" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
         <a [href]="profile.medium" target="_blank" rel="noreferrer">Medium <span>↗</span></a>

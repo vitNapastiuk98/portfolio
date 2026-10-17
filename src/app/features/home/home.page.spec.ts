@@ -25,12 +25,19 @@ describe('HomePage', () => {
     expect(root.querySelector('[data-section="expertise"]')).toBeTruthy();
     expect(root.querySelector('[data-section="work"]')).toBeTruthy();
     expect(root.querySelector('[data-section="experience"]')).toBeTruthy();
-    expect(root.querySelector('[data-section="writing"]')).toBeTruthy();
+    expect(root.querySelector('#engineering a[href^="/blog/"]')).toBeTruthy();
+    expect(root.querySelector('section[data-section="writing"]')).toBeNull();
     expect(root.querySelector('[data-section="conversation"]')).toBeTruthy();
     expect(root.querySelector('#home')).toBeTruthy();
     expect(root.querySelector('#expertise')).toBeTruthy();
     expect(root.querySelector('#work')).toBeTruthy();
     expect(root.querySelector('#experience')).toBeTruthy();
+    const sections = Array.from(root.querySelectorAll('[data-section]')).map(
+      (section) => section.id,
+    );
+    expect(sections.indexOf('engineering')).toBe(sections.indexOf('work') + 1);
+    expect(sections.indexOf('experience')).toBe(sections.indexOf('engineering') + 1);
+    expect(root.querySelector('#work #engineering')).toBeNull();
     expect(root.querySelector('#writing')).toBeTruthy();
     expect(root.querySelector('#contact')).toBeTruthy();
     expect(root.querySelector('h1')?.textContent).toContain('Vitalii');

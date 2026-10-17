@@ -28,7 +28,7 @@ import { blogPosts } from '../../../generated/blog-posts.generated';
       <div class="reading-progress" [style.width.%]="progress()"></div>
       <article class="article-page">
         <header>
-          <a class="article-back" routerLink="/" fragment="writing">← All writing</a>
+          <a class="article-back" routerLink="/engineering">← Engineering & Writing</a>
           <p class="article-tags">{{ article.tags.join(' / ') }}</p>
           <h1>{{ article.title }}</h1>
           <p class="article-deck">{{ article.description }}</p>

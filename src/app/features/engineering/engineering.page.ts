@@ -7,70 +7,102 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
 import { StudyBodyComponent } from '../../shared/study-body.component';
 import { generatedSiteConfig } from '../../../generated/site-config.generated';
 import { profile } from '../../data/profile.data';
+import { EngineeringArticleVisualComponent } from './engineering-article-visual.component';
 import { AnchorTrackingDiagramComponent } from '../../shared/anchor-tracking-diagram.component';
 
 @Component({
   selector: 'app-engineering-page',
-  imports: [RouterLink, StudyBodyComponent, AnchorTrackingDiagramComponent],
+  imports: [
+    RouterLink,
+    StudyBodyComponent,
+    AnchorTrackingDiagramComponent,
+    EngineeringArticleVisualComponent,
+  ],
   template: `
     @if (study(); as item) {
-      <article class="project-study engineering-study">
+      <article
+        class="project-study engineering-study"
+        [class.engineering-article]="item.presentation === 'article'"
+      >
         <header class="project-study__header">
-          <a class="article-back" routerLink="/engineering">← Engineering studies</a>
+          <a class="article-back" routerLink="/engineering">← Engineering & Writing</a>
           <p class="eyebrow">
             {{ item.category }} /
             {{
-              item.experiment ? 'Lab experiment' : item.experience ? 'Case study' : 'Design study'
+              item.presentation === 'article'
+                ? 'Article'
+                : item.studyType === 'implemented'
+                  ? 'Implemented example'
+                  : item.experiment
+                    ? 'Lab experiment'
+                    : item.experience
+                      ? 'Case study'
+                      : 'Design study'
             }}
           </p>
           <h1>{{ item.title }}</h1>
           <p class="project-study__summary">{{ item.summary }}</p>
-        </header>
-        <aside class="study-brief" aria-label="Study at a glance">
-          @if (item.experience; as experience) {
-            <p class="eyebrow">Engineering contribution</p>
-            <p>{{ experience.contribution }}</p>
-            <p class="eyebrow">Key technical elements</p>
-            <ul>
-              @for (capability of experience.implemented; track capability) {
-                <li>{{ capability }}</li>
-              }
-            </ul>
-            <span>Implemented workflow · Reconstructed explanation</span>
-          } @else {
-            <p class="eyebrow">The engineering challenge</p>
-            <p>{{ item.takeaways[0] }}</p>
-            <ul>
-              @for (step of item.flow.steps; track step.title) {
-                <li>{{ step.title }}</li>
-              }
-            </ul>
-            <span>{{
-              item.experiment
-                ? 'Runnable fixture · Recorded samples · Measurement limits'
-                : 'Principles · Tradeoffs · Failure scenarios'
-            }}</span>
+          @if (item.presentation !== 'article' && item.problem) {
+            <p class="study-problem"><strong>Problem investigated:</strong> {{ item.problem }}</p>
           }
-        </aside>
-        @if (item.experiment) {
-          <section class="study-experiment" aria-labelledby="experiment-title">
-            <h2 id="experiment-title">Inspect the experiment</h2>
-            <p>
-              Two scheduling strategies, identical computation. Recorded local results are available
-              inside the lab.
-            </p>
-            <nav aria-label="Performance experiment">
-              <a href="/performance-lab/?mode=baseline">Run baseline ↗</a>
-              <a href="/performance-lab/?mode=optimized">Run optimized ↗</a>
-              <a href="/performance-lab/results.json">Raw measurements ↗</a>
-              <a href="/performance-lab/README.md">Reproduce the test ↗</a>
-            </nav>
-          </section>
+          @if (item.presentation !== 'article' && (item.technologies?.length || item.updatedOn)) {
+            <ul class="study-metadata" aria-label="Study details">
+              @for (technology of item.technologies ?? []; track technology) {
+                <li>{{ technology }}</li>
+              }
+              @if (item.updatedOn) {
+                <li>
+                  Updated <time [attr.datetime]="item.updatedOn">{{ item.updatedOn }}</time>
+                </li>
+              }
+            </ul>
+          }
+          @if (item.presentation !== 'article' && item.demo) {
+            <a class="text-link" [href]="item.demo.href"
+              >{{ item.demo.label }} <span aria-hidden="true">↓</span></a
+            >
+          }
+        </header>
+        @if (item.presentation !== 'article') {
+          <aside class="study-brief" aria-label="Study at a glance">
+            @if (item.experience; as experience) {
+              <p class="eyebrow">Engineering contribution</p>
+              <p>{{ experience.contribution }}</p>
+              <p class="eyebrow">Key technical elements</p>
+              <ul>
+                @for (capability of experience.implemented; track capability) {
+                  <li>{{ capability }}</li>
+                }
+              </ul>
+              <span>Implemented workflow · Reconstructed explanation</span>
+            } @else {
+              <p class="eyebrow">The engineering challenge</p>
+              <p>{{ item.takeaways[0] }}</p>
+              <ul>
+                @for (step of item.flow.steps; track step.title) {
+                  <li>{{ step.title }}</li>
+                }
+              </ul>
+              <span>{{
+                item.experiment
+                  ? 'Runnable fixture · Recorded samples · Measurement limits'
+                  : 'Principles · Tradeoffs · Failure scenarios'
+              }}</span>
+            }
+          </aside>
         }
         @if (item.slug === 'opencv-anchored-annotations') {
           <app-anchor-tracking-diagram />
         }
-        <app-study-body [study]="item" [path]="'/engineering/' + item.slug" />
+        <ng-template #sectionExample let-sectionId>
+          <app-engineering-article-visual [subject]="item.slug" [section]="sectionId" />
+        </ng-template>
+        <app-study-body
+          [study]="item"
+          [articleMode]="item.presentation === 'article'"
+          [path]="'/engineering/' + item.slug"
+          [sectionExample]="sectionExample"
+        />
         <nav class="study-related" aria-label="Continue reading">
           <p class="eyebrow">Explore another problem</p>
           @for (related of relatedStudies(); track related.slug) {
@@ -104,9 +136,12 @@ export class EngineeringPage {
   readonly study = computed(
     () => engineeringStudies.find((item) => item.slug === this.slug()) ?? null,
   );
-  readonly relatedStudies = computed(() =>
-    engineeringStudies.filter((item) => item.slug !== this.slug()),
-  );
+  readonly relatedStudies = computed(() => {
+    const related = this.study()?.relatedSlugs;
+    return engineeringStudies.filter(
+      (item) => item.slug !== this.slug() && (!related || related.includes(item.slug)),
+    );
+  });
 
   constructor() {
     effect(() => {

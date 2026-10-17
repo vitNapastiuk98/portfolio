@@ -1,8 +1,231 @@
 {
   "scope": "Synthetic local lab; not field Core Web Vitals",
-  "measuredAt": "2026-10-17T14:36:53.033Z",
-  "fixtureSha256": "96c7a1a330d485766997a681939380ee39569f64cfef20ecabc55e617d6dd483",
+  "measuredAt": "2026-10-17T17:49:30.653Z",
+  "fixtureSha256": "0674b85be942df01b3a94bcafb5d7f7389810f82788b4ec8f72885a717177429",
+  "instrumentationSha256": "840ce4503aa25d9e0d1a0b5355661f7c78e7ec3cd4d2ab54d26ead01d9dac67d",
   "fieldINP": null,
+  "distributions": {
+    "baseline": {
+      "lcpMs": {
+        "min": 824,
+        "max": 888,
+        "mean": 838.4,
+        "sampleStandardDeviation": 27.799280566230482
+      },
+      "cls": {
+        "min": 0.047114844680038626,
+        "max": 0.047114844680038626,
+        "mean": 0.047114844680038626,
+        "sampleStandardDeviation": 0
+      },
+      "responseFrameMs": {
+        "min": 87.10000002384186,
+        "max": 97.90000009536743,
+        "mean": 89.68000004291534,
+        "sampleStandardDeviation": 4.645643152606653
+      },
+      "longTaskCount": {
+        "min": 1,
+        "max": 1,
+        "mean": 1,
+        "sampleStandardDeviation": 0
+      },
+      "longTaskMs": {
+        "min": 84,
+        "max": 100,
+        "mean": 88,
+        "sampleStandardDeviation": 6.782329983125268
+      },
+      "completionMs": {
+        "min": 83.10000002384186,
+        "max": 88.90000009536743,
+        "mean": 84.66000001430511,
+        "sampleStandardDeviation": 2.41929746035954
+      },
+      "contentReadyMs": {
+        "min": 814.5,
+        "max": 865.2999999523163,
+        "mean": 825.1199999809265,
+        "sampleStandardDeviation": 22.466241324855044
+      }
+    },
+    "optimized": {
+      "lcpMs": {
+        "min": 48,
+        "max": 56,
+        "mean": 52,
+        "sampleStandardDeviation": 4
+      },
+      "cls": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "responseFrameMs": {
+        "min": 18.299999952316284,
+        "max": 31.5,
+        "mean": 25.159999990463255,
+        "sampleStandardDeviation": 5.333197916422719
+      },
+      "longTaskCount": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "longTaskMs": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "completionMs": {
+        "min": 191.5,
+        "max": 215.29999995231628,
+        "mean": 202.55999999046327,
+        "sampleStandardDeviation": 9.851294307134745
+      },
+      "contentReadyMs": {
+        "min": 13.599999904632568,
+        "max": 16.59999990463257,
+        "mean": 15.37999997138977,
+        "sampleStandardDeviation": 1.2173742566786536
+      }
+    },
+    "delay-only": {
+      "lcpMs": {
+        "min": 40,
+        "max": 56,
+        "mean": 50.4,
+        "sampleStandardDeviation": 6.6932802122726045
+      },
+      "cls": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "responseFrameMs": {
+        "min": 90.10000002384186,
+        "max": 98.60000002384186,
+        "mean": 92.26000001430512,
+        "sampleStandardDeviation": 3.5948574414127017
+      },
+      "longTaskCount": {
+        "min": 1,
+        "max": 1,
+        "mean": 1,
+        "sampleStandardDeviation": 0
+      },
+      "longTaskMs": {
+        "min": 88,
+        "max": 97,
+        "mean": 90.2,
+        "sampleStandardDeviation": 3.8340579025361627
+      },
+      "completionMs": {
+        "min": 85.89999997615814,
+        "max": 94.40000009536743,
+        "mean": 88.30000002384186,
+        "sampleStandardDeviation": 3.46914979452187
+      },
+      "contentReadyMs": {
+        "min": 13.699999928474426,
+        "max": 17.199999928474426,
+        "mean": 15.159999990463257,
+        "sampleStandardDeviation": 1.3277800915920501
+      }
+    },
+    "reservation-only": {
+      "lcpMs": {
+        "min": 48,
+        "max": 60,
+        "mean": 53.6,
+        "sampleStandardDeviation": 4.560701700396551
+      },
+      "cls": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "responseFrameMs": {
+        "min": 88.5,
+        "max": 91.89999997615814,
+        "mean": 90.1,
+        "sampleStandardDeviation": 1.4983323757460658
+      },
+      "longTaskCount": {
+        "min": 1,
+        "max": 1,
+        "mean": 1,
+        "sampleStandardDeviation": 0
+      },
+      "longTaskMs": {
+        "min": 86,
+        "max": 91,
+        "mean": 88,
+        "sampleStandardDeviation": 1.8708286933869707
+      },
+      "completionMs": {
+        "min": 84.69999992847443,
+        "max": 88.60000002384186,
+        "mean": 86.35999999046325,
+        "sampleStandardDeviation": 1.6288032373289625
+      },
+      "contentReadyMs": {
+        "min": 814.8000000715256,
+        "max": 817,
+        "mean": 815.9399999856948,
+        "sampleStandardDeviation": 0.9633275484837582
+      }
+    },
+    "scheduling-only": {
+      "lcpMs": {
+        "min": 824,
+        "max": 872,
+        "mean": 834.4,
+        "sampleStandardDeviation": 21.090282122342508
+      },
+      "cls": {
+        "min": 0.047114844680038626,
+        "max": 0.047114844680038626,
+        "mean": 0.047114844680038626,
+        "sampleStandardDeviation": 0
+      },
+      "responseFrameMs": {
+        "min": 21.5,
+        "max": 34.300000071525574,
+        "mean": 27.40000002384186,
+        "sampleStandardDeviation": 5.03189826828705
+      },
+      "longTaskCount": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "longTaskMs": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "sampleStandardDeviation": 0
+      },
+      "completionMs": {
+        "min": 190.19999992847443,
+        "max": 220.10000002384186,
+        "mean": 204.2,
+        "sampleStandardDeviation": 11.37321417775719
+      },
+      "contentReadyMs": {
+        "min": 814.6000000238419,
+        "max": 855.9000000953674,
+        "mean": 823.4200000524521,
+        "sampleStandardDeviation": 18.165544332997477
+      }
+    }
+  },
   "environment": {
     "browser": "Chrome/155.0.8059.84",
     "platform": "darwin arm64",
@@ -16,7 +239,7 @@
     "network": "Loopback, no network throttling",
     "cache": "Disabled; fresh navigation for each sample",
     "repetitions": 5,
-    "order": "Paired; alternating first mode",
+    "order": "Five blocks of five conditions; reversed order on alternate blocks; no warm-up discarded",
     "observationWindowMs": 1500,
     "interaction": "One trusted CDP mouse click; handler start to second requestAnimationFrame callback, including one frame boundary; excludes input delay; not INP",
     "eventTiming": "Maximum Event Timing duration if available (16 ms floor); missing entries remain null",
@@ -24,20 +247,49 @@
   },
   "medians": {
     "baseline": {
-      "lcpMs": 848,
-      "cls": 0.08721968716578,
-      "responseFrameMs": 188.39999997615814,
+      "lcpMs": 828,
+      "cls": 0.047114844680038626,
+      "responseFrameMs": 87.30000007152557,
       "longTaskCount": 1,
-      "longTaskMs": 188,
-      "completionMs": 184.70000004768372
+      "longTaskMs": 86,
+      "completionMs": 83.5,
+      "contentReadyMs": 815.1000000238419
     },
     "optimized": {
-      "lcpMs": 48,
+      "lcpMs": 52,
       "cls": 0,
-      "responseFrameMs": 57,
+      "responseFrameMs": 24.199999928474426,
       "longTaskCount": 0,
       "longTaskMs": 0,
-      "completionMs": 301.89999997615814
+      "completionMs": 202.5,
+      "contentReadyMs": 15.399999976158142
+    },
+    "delay-only": {
+      "lcpMs": 52,
+      "cls": 0,
+      "responseFrameMs": 91,
+      "longTaskCount": 1,
+      "longTaskMs": 89,
+      "completionMs": 87.10000002384186,
+      "contentReadyMs": 14.800000071525574
+    },
+    "reservation-only": {
+      "lcpMs": 52,
+      "cls": 0,
+      "responseFrameMs": 90.20000004768372,
+      "longTaskCount": 1,
+      "longTaskMs": 88,
+      "completionMs": 86.39999997615814,
+      "contentReadyMs": 815.8999999761581
+    },
+    "scheduling-only": {
+      "lcpMs": 824,
+      "cls": 0.047114844680038626,
+      "responseFrameMs": 26,
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "completionMs": 203.30000007152557,
+      "contentReadyMs": 815.8000000715256
     }
   },
   "runs": [
@@ -45,140 +297,1792 @@
       "pair": 1,
       "mode": "baseline",
       "lcpMs": 888,
-      "cls": 0.08721968716578,
-      "interactionMs": 232,
-      "interactionId": 115,
-      "longTaskCount": 1,
-      "longTaskMs": 206,
       "lcpElement": "H2",
-      "completionMs": 195.69999992847443,
-      "responseFrameMs": 204.89999997615814,
+      "lcpCandidates": [
+        {
+          "startTime": 168,
+          "element": "P",
+          "size": 21632
+        },
+        {
+          "startTime": 888,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 169.19999992847443,
+          "value": 0.060312448964861154,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 884.3999999761581,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1648.3999999761581,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 120,
+      "interactionId": 4408,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1527,
+          "duration": 120,
+          "interactionId": 4408,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 13.799999952316284,
+          "processingMs": 2.600000023841858
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1546.0999999046326,
+          "duration": 104,
+          "interactionId": 4408,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.6000000238418579,
+          "processingMs": 1.3000000715255737
+        },
+        {
+          "name": "click",
+          "startTime": 1546.0999999046326,
+          "duration": 104,
+          "interactionId": 4408,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.9000000953674316,
+          "processingMs": 91.19999992847443
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1527,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 100,
+      "longTasks": [
+        {
+          "startTime": 1546.5,
+          "duration": 100
+        }
+      ],
+      "contentReadyMs": 865.2999999523163,
+      "completionMs": 88.90000009536743,
+      "responseFrameMs": 97.90000009536743,
       "checksum": 876356119381.0818
     },
     {
       "pair": 1,
       "mode": "optimized",
-      "lcpMs": 44,
+      "lcpMs": 48,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 48,
+          "element": "H2",
+          "size": 32776
+        }
+      ],
       "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 46.90000009536743,
+          "value": 0.060312448964861154,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 1711.6000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
       "interactionMs": 24,
-      "interactionId": 3186,
+      "interactionId": 1998,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1507,
+          "duration": 24,
+          "interactionId": 1998,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.5,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1509.7000000476837,
+          "duration": 16,
+          "interactionId": 1998,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.6000000238418579,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1509.7000000476837,
+          "duration": 16,
+          "interactionId": 1998,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.6000000238418579,
+          "processingMs": 0.6000000238418579
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1507,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 0,
       "longTaskMs": 0,
-      "lcpElement": "H2",
-      "completionMs": 319.60000002384186,
-      "responseFrameMs": 59.10000002384186,
+      "longTasks": [],
+      "contentReadyMs": 16.40000009536743,
+      "completionMs": 191.5,
+      "responseFrameMs": 18.299999952316284,
       "checksum": 876356119381.0818
     },
     {
-      "pair": 2,
-      "mode": "optimized",
+      "pair": 1,
+      "mode": "delay-only",
+      "lcpMs": 40,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 40,
+          "element": "H2",
+          "size": 32776
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 41.89999997615814,
+          "value": 0.000007362018442463626,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 1600.8999999761581,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 1761,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1506.6999999284744,
+          "duration": 96,
+          "interactionId": 1761,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1,
+          "processingMs": 0.10000002384185791
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1508.2999999523163,
+          "duration": 96,
+          "interactionId": 1761,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.20000004768371582,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1508.2999999523163,
+          "duration": 96,
+          "interactionId": 1761,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.20000004768371582,
+          "processingMs": 88
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1506.6999999284744,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 89,
+      "longTasks": [
+        {
+          "startTime": 1508.5,
+          "duration": 89
+        }
+      ],
+      "contentReadyMs": 17.199999928474426,
+      "completionMs": 87.10000002384186,
+      "responseFrameMs": 91,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 1,
+      "mode": "reservation-only",
       "lcpMs": 52,
+      "lcpElement": "P",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "P",
+          "size": 22242
+        }
+      ],
       "cls": 0,
-      "interactionMs": 24,
-      "interactionId": 6868,
+      "layoutShifts": [
+        {
+          "startTime": 37.799999952316284,
+          "value": 0.000007362018442463626,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 1598.2999999523163,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 3057,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.1999999284744,
+          "duration": 96,
+          "interactionId": 3057,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.4000000953674316,
+          "processingMs": 0.09999990463256836
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506.6000000238419,
+          "duration": 88,
+          "interactionId": 3057,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.3999999761581421,
+          "processingMs": 0.10000002384185791
+        },
+        {
+          "name": "click",
+          "startTime": 1506.6000000238419,
+          "duration": 88,
+          "interactionId": 3057,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5,
+          "processingMs": 87.19999992847443
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.1999999284744,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 88,
+      "longTasks": [
+        {
+          "startTime": 1507,
+          "duration": 88
+        }
+      ],
+      "contentReadyMs": 815.1999999284744,
+      "completionMs": 86.39999997615814,
+      "responseFrameMs": 90.20000004768372,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 1,
+      "mode": "scheduling-only",
+      "lcpMs": 824,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 48,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 824,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 817.6000000238419,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1712.1000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": null,
+      "interactionId": null,
+      "eventTiming": [],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.6000000238419,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 0,
       "longTaskMs": 0,
-      "lcpElement": "H2",
-      "completionMs": 300.2999999523163,
-      "responseFrameMs": 54.199999928474426,
+      "longTasks": [],
+      "contentReadyMs": 814.8999999761581,
+      "completionMs": 190.19999992847443,
+      "responseFrameMs": 21.5,
       "checksum": 876356119381.0818
     },
     {
       "pair": 2,
-      "mode": "baseline",
-      "lcpMs": 856,
-      "cls": 0.08721968716578,
-      "interactionMs": 192,
-      "interactionId": 7777,
-      "longTaskCount": 1,
-      "longTaskMs": 188,
+      "mode": "scheduling-only",
+      "lcpMs": 828,
       "lcpElement": "H2",
-      "completionMs": 184.70000004768372,
-      "responseFrameMs": 188.39999997615814,
-      "checksum": 876356119381.0818
-    },
-    {
-      "pair": 3,
-      "mode": "baseline",
-      "lcpMs": 848,
-      "cls": 0.08721968716578,
-      "interactionMs": 200,
-      "interactionId": 9915,
-      "longTaskCount": 1,
-      "longTaskMs": 192,
-      "lcpElement": "H2",
-      "completionMs": 189.5,
-      "responseFrameMs": 195.69999992847443,
-      "checksum": 876356119381.0818
-    },
-    {
-      "pair": 3,
-      "mode": "optimized",
-      "lcpMs": 44,
-      "cls": 0,
-      "interactionMs": 24,
-      "interactionId": 4975,
+      "lcpCandidates": [
+        {
+          "startTime": 40,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 828,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 38.299999952316284,
+          "value": 0.000007362018442463626,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 823.3999999761581,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1721.2999999523163,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 16,
+      "interactionId": 5886,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.7999999523163,
+          "duration": 16,
+          "interactionId": 5886,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1,
+          "processingMs": 0.10000002384185791
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1508.2000000476837,
+          "duration": 16,
+          "interactionId": 5886,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1508.2000000476837,
+          "duration": 16,
+          "interactionId": 5886,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.09999990463256836,
+          "processingMs": 0.10000002384185791
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.7999999523163,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 0,
       "longTaskMs": 0,
-      "lcpElement": "H2",
-      "completionMs": 328.89999997615814,
-      "responseFrameMs": 54.800000071525574,
+      "longTasks": [],
+      "contentReadyMs": 814.6000000238419,
+      "completionMs": 203.30000007152557,
+      "responseFrameMs": 30.5,
       "checksum": 876356119381.0818
     },
     {
-      "pair": 4,
-      "mode": "optimized",
-      "lcpMs": 84,
+      "pair": 2,
+      "mode": "reservation-only",
+      "lcpMs": 60,
+      "lcpElement": "P",
+      "lcpCandidates": [
+        {
+          "startTime": 60,
+          "element": "P",
+          "size": 22242
+        }
+      ],
       "cls": 0,
-      "interactionMs": 24,
-      "interactionId": 9223,
-      "longTaskCount": 0,
-      "longTaskMs": 0,
-      "lcpElement": "H2",
-      "completionMs": 301.89999997615814,
-      "responseFrameMs": 57,
-      "checksum": 876356119381.0818
-    },
-    {
-      "pair": 4,
-      "mode": "baseline",
-      "lcpMs": 840,
-      "cls": 0.08721968716578,
-      "interactionMs": 192,
-      "interactionId": 6981,
+      "layoutShifts": [
+        {
+          "startTime": 1601.1000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 3453,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.5,
+          "duration": 96,
+          "interactionId": 3453,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.5,
+          "processingMs": 0.3999999761581421
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1507,
+          "duration": 96,
+          "interactionId": 3453,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.2999999523162842,
+          "processingMs": 0.20000004768371582
+        },
+        {
+          "name": "click",
+          "startTime": 1507,
+          "duration": 96,
+          "interactionId": 3453,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5,
+          "processingMs": 89.79999995231628
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.5,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 1,
-      "longTaskMs": 185,
-      "lcpElement": "H2",
-      "completionMs": 183.79999995231628,
-      "responseFrameMs": 188.29999995231628,
+      "longTaskMs": 91,
+      "longTasks": [
+        {
+          "startTime": 1507.2999999523163,
+          "duration": 91
+        }
+      ],
+      "contentReadyMs": 816.7999999523163,
+      "completionMs": 88.60000002384186,
+      "responseFrameMs": 91.89999997615814,
       "checksum": 876356119381.0818
     },
     {
-      "pair": 5,
-      "mode": "baseline",
-      "lcpMs": 844,
-      "cls": 0.08721968716578,
-      "interactionMs": 184,
-      "interactionId": 4145,
+      "pair": 2,
+      "mode": "delay-only",
+      "lcpMs": 52,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "H2",
+          "size": 32776
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 41.10000002384186,
+          "value": 0.000007362018442463626,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 1600.2000000476837,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 298,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.7999999523163,
+          "duration": 96,
+          "interactionId": 298,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7000000476837158,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506.6000000238419,
+          "duration": 96,
+          "interactionId": 298,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1506.6000000238419,
+          "duration": 96,
+          "interactionId": 298,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 87.70000004768372
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.7999999523163,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 1,
-      "longTaskMs": 177,
-      "lcpElement": "H2",
-      "completionMs": 174.79999995231628,
-      "responseFrameMs": 179.39999997615814,
+      "longTaskMs": 89,
+      "longTasks": [
+        {
+          "startTime": 1507.2999999523163,
+          "duration": 89
+        }
+      ],
+      "contentReadyMs": 14.5,
+      "completionMs": 87.60000002384186,
+      "responseFrameMs": 91.5,
       "checksum": 876356119381.0818
     },
     {
-      "pair": 5,
+      "pair": 2,
       "mode": "optimized",
       "lcpMs": 48,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 48,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
       "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1713.7999999523163,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
       "interactionMs": 24,
-      "interactionId": 2759,
+      "interactionId": 5195,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.2999999523163,
+          "duration": 24,
+          "interactionId": 5195,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.2000000476837158,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1508.1999999284744,
+          "duration": 24,
+          "interactionId": 5195,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1508.1999999284744,
+          "duration": 24,
+          "interactionId": 5195,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0,
+          "processingMs": 0.8999999761581421
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.2999999523163,
+          "target": "run-work"
+        }
+      ],
       "longTaskCount": 0,
       "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 16.59999990463257,
+      "completionMs": 194.60000002384186,
+      "responseFrameMs": 22.40000009536743,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 2,
+      "mode": "baseline",
+      "lcpMs": 824,
       "lcpElement": "H2",
-      "completionMs": 294.1999999284744,
-      "responseFrameMs": 60.89999997615814,
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 824,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 818.5,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1595.6000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 1448,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.3999999761581,
+          "duration": 88,
+          "interactionId": 1448,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.6000000238418579,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506,
+          "duration": 88,
+          "interactionId": 1448,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1506,
+          "duration": 88,
+          "interactionId": 1448,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 84.70000004768372
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.3999999761581,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 86,
+      "longTasks": [
+        {
+          "startTime": 1506.7999999523163,
+          "duration": 86
+        }
+      ],
+      "contentReadyMs": 814.8999999761581,
+      "completionMs": 83.5,
+      "responseFrameMs": 87.10000002384186,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 3,
+      "mode": "baseline",
+      "lcpMs": 824,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 824,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 819.3999999761581,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1596.1000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 9391,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.7000000476837,
+          "duration": 88,
+          "interactionId": 9391,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1,
+          "processingMs": 0.09999990463256836
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1505.7000000476837,
+          "duration": 88,
+          "interactionId": 9391,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.19999992847442627,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1505.7000000476837,
+          "duration": 88,
+          "interactionId": 9391,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.19999992847442627,
+          "processingMs": 85.5
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.7000000476837,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 86,
+      "longTasks": [
+        {
+          "startTime": 1505.8999999761581,
+          "duration": 86
+        }
+      ],
+      "contentReadyMs": 815.7999999523163,
+      "completionMs": 84.39999997615814,
+      "responseFrameMs": 88.80000007152557,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 3,
+      "mode": "optimized",
+      "lcpMs": 52,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1714.5999999046326,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": null,
+      "interactionId": null,
+      "eventTiming": [],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.1999999284744,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 13.599999904632568,
+      "completionMs": 202.5,
+      "responseFrameMs": 24.199999928474426,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 3,
+      "mode": "delay-only",
+      "lcpMs": 56,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1598.1999999284744,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 3631,
+      "eventTiming": [
+        {
+          "name": "pointerup",
+          "startTime": 1506.1999999284744,
+          "duration": 88,
+          "interactionId": 3631,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.20000004768371582,
+          "processingMs": 0.5
+        },
+        {
+          "name": "click",
+          "startTime": 1506.1999999284744,
+          "duration": 88,
+          "interactionId": 3631,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7000000476837158,
+          "processingMs": 86.89999997615814
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.6999999284744,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 88,
+      "longTasks": [
+        {
+          "startTime": 1506.3999999761581,
+          "duration": 88
+        }
+      ],
+      "contentReadyMs": 15.600000023841858,
+      "completionMs": 86.5,
+      "responseFrameMs": 90.10000002384186,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 3,
+      "mode": "reservation-only",
+      "lcpMs": 56,
+      "lcpElement": "P",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "P",
+          "size": 22242
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1600.2000000476837,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 7654,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.3000000715256,
+          "duration": 96,
+          "interactionId": 7654,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.8999999761581421,
+          "processingMs": 0.8999999761581421
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1507.7000000476837,
+          "duration": 88,
+          "interactionId": 7654,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.2999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1507.7000000476837,
+          "duration": 88,
+          "interactionId": 7654,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.2999999523162842,
+          "processingMs": 88
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.3000000715256,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 88,
+      "longTasks": [
+        {
+          "startTime": 1508,
+          "duration": 88
+        }
+      ],
+      "contentReadyMs": 814.8000000715256,
+      "completionMs": 87.19999992847443,
+      "responseFrameMs": 91.19999992847443,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 3,
+      "mode": "scheduling-only",
+      "lcpMs": 824,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 824,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 819.1000000238419,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1714.5,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": null,
+      "interactionId": null,
+      "eventTiming": [],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.5,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 815.8000000715256,
+      "completionMs": 197.89999997615814,
+      "responseFrameMs": 24.700000047683716,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 4,
+      "mode": "scheduling-only",
+      "lcpMs": 824,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 824,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 819.3000000715256,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1733.9000000953674,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 16,
+      "interactionId": 5059,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.9000000953674,
+          "duration": 16,
+          "interactionId": 5059,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.19999992847442627,
+          "processingMs": 0
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.9000000953674,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 815.9000000953674,
+      "completionMs": 220.10000002384186,
+      "responseFrameMs": 26,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 4,
+      "mode": "reservation-only",
+      "lcpMs": 52,
+      "lcpElement": "P",
+      "lcpCandidates": [
+        {
+          "startTime": 52,
+          "element": "P",
+          "size": 22242
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1597.3000000715256,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 96,
+      "interactionId": 6299,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.7000000476837,
+          "duration": 96,
+          "interactionId": 6299,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.7999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1507,
+          "duration": 88,
+          "interactionId": 6299,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7000000476837158,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1507,
+          "duration": 88,
+          "interactionId": 6299,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7000000476837158,
+          "processingMs": 85.19999992847443
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.7000000476837,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 86,
+      "longTasks": [
+        {
+          "startTime": 1507.7000000476837,
+          "duration": 86
+        }
+      ],
+      "contentReadyMs": 815.8999999761581,
+      "completionMs": 84.90000009536743,
+      "responseFrameMs": 88.70000004768372,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 4,
+      "mode": "delay-only",
+      "lcpMs": 48,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 48,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1607.7000000476837,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 104,
+      "interactionId": 3254,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.1000000238419,
+          "duration": 104,
+          "interactionId": 3254,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 0.10000002384185791
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1507.2000000476837,
+          "duration": 104,
+          "interactionId": 3254,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1507.2000000476837,
+          "duration": 104,
+          "interactionId": 3254,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5,
+          "processingMs": 94.60000002384186
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.1000000238419,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 97,
+      "longTasks": [
+        {
+          "startTime": 1507.3000000715256,
+          "duration": 97
+        }
+      ],
+      "contentReadyMs": 14.800000071525574,
+      "completionMs": 94.40000009536743,
+      "responseFrameMs": 98.60000002384186,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 4,
+      "mode": "optimized",
+      "lcpMs": 56,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1738,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 16,
+      "interactionId": 2732,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.8999999761581,
+          "duration": 16,
+          "interactionId": 2732,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 0.8000000715255737
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506.6999999284744,
+          "duration": 16,
+          "interactionId": 2732,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1506.6999999284744,
+          "duration": 16,
+          "interactionId": 2732,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.10000002384185791,
+          "processingMs": 1.100000023841858
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.8999999761581,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 15.399999976158142,
+      "completionMs": 215.29999995231628,
+      "responseFrameMs": 29.399999976158142,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 4,
+      "mode": "baseline",
+      "lcpMs": 828,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 828,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 822.3999999761581,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1595.6999999284744,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 6044,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.1000000238419,
+          "duration": 88,
+          "interactionId": 6044,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.6999999284744263,
+          "processingMs": 0.7000000476837158
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506.7999999523163,
+          "duration": 88,
+          "interactionId": 6044,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1506.7999999523163,
+          "duration": 88,
+          "interactionId": 6044,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1,
+          "processingMs": 83.80000007152557
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.1000000238419,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 84,
+      "longTasks": [
+        {
+          "startTime": 1507.6999999284744,
+          "duration": 84
+        }
+      ],
+      "contentReadyMs": 814.5,
+      "completionMs": 83.39999997615814,
+      "responseFrameMs": 87.29999995231628,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 5,
+      "mode": "baseline",
+      "lcpMs": 828,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 828,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 822.2000000476837,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1595.2000000476837,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 3472,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.6000000238419,
+          "duration": 88,
+          "interactionId": 3472,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.100000023841858,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1506.6000000238419,
+          "duration": 88,
+          "interactionId": 3472,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.10000002384185791,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1506.6000000238419,
+          "duration": 88,
+          "interactionId": 3472,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.10000002384185791,
+          "processingMs": 83.29999995231628
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1504.6000000238419,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 84,
+      "longTasks": [
+        {
+          "startTime": 1506.7000000476837,
+          "duration": 84
+        }
+      ],
+      "contentReadyMs": 815.1000000238419,
+      "completionMs": 83.10000002384186,
+      "responseFrameMs": 87.30000007152557,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 5,
+      "mode": "optimized",
+      "lcpMs": 56,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1719.7999999523163,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 16,
+      "interactionId": 4584,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.2000000476837,
+          "duration": 16,
+          "interactionId": 4584,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.7999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1505.5,
+          "duration": 16,
+          "interactionId": 4584,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.2999999523162842,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1505.5,
+          "duration": 16,
+          "interactionId": 4584,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.2999999523162842,
+          "processingMs": 0.40000009536743164
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1503.2000000476837,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 14.899999976158142,
+      "completionMs": 208.89999997615814,
+      "responseFrameMs": 31.5,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 5,
+      "mode": "delay-only",
+      "lcpMs": 56,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 56,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1600,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 1131,
+      "eventTiming": [
+        {
+          "name": "pointerup",
+          "startTime": 1507.8999999761581,
+          "duration": 88,
+          "interactionId": 1131,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.3999999761581421,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1507.8999999761581,
+          "duration": 88,
+          "interactionId": 1131,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.3999999761581421,
+          "processingMs": 87.29999995231628
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1506.1999999284744,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 88,
+      "longTasks": [
+        {
+          "startTime": 1508.2999999523163,
+          "duration": 88
+        }
+      ],
+      "contentReadyMs": 13.699999928474426,
+      "completionMs": 85.89999997615814,
+      "responseFrameMs": 90.10000002384186,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 5,
+      "mode": "reservation-only",
+      "lcpMs": 48,
+      "lcpElement": "P",
+      "lcpCandidates": [
+        {
+          "startTime": 48,
+          "element": "P",
+          "size": 22242
+        }
+      ],
+      "cls": 0,
+      "layoutShifts": [
+        {
+          "startTime": 1598.1000000238419,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 88,
+      "interactionId": 266,
+      "eventTiming": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.7000000476837,
+          "duration": 88,
+          "interactionId": 266,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 1.2999999523162842,
+          "processingMs": 0.10000002384185791
+        },
+        {
+          "name": "pointerup",
+          "startTime": 1508,
+          "duration": 88,
+          "interactionId": 266,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.10000002384185791,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1508,
+          "duration": 88,
+          "interactionId": 266,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.10000002384185791,
+          "processingMs": 85.89999997615814
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1505.7000000476837,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 1,
+      "longTaskMs": 87,
+      "longTasks": [
+        {
+          "startTime": 1508.1000000238419,
+          "duration": 87
+        }
+      ],
+      "contentReadyMs": 817,
+      "completionMs": 84.69999992847443,
+      "responseFrameMs": 88.5,
+      "checksum": 876356119381.0818
+    },
+    {
+      "pair": 5,
+      "mode": "scheduling-only",
+      "lcpMs": 872,
+      "lcpElement": "H2",
+      "lcpCandidates": [
+        {
+          "startTime": 136,
+          "element": "P",
+          "size": 22242
+        },
+        {
+          "startTime": 872,
+          "element": "H2",
+          "size": 35445
+        }
+      ],
+      "cls": 0.047114844680038626,
+      "layoutShifts": [
+        {
+          "startTime": 140.5,
+          "value": 0.000007362018442463626,
+          "hadRecentInput": true
+        },
+        {
+          "startTime": 866.3000000715256,
+          "value": 0.047114844680038626,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1732.5,
+          "value": 0.002285303348635821,
+          "hadRecentInput": true
+        }
+      ],
+      "interactionMs": 16,
+      "interactionId": 8331,
+      "eventTiming": [
+        {
+          "name": "pointerup",
+          "startTime": 1513.9000000953674,
+          "duration": 16,
+          "interactionId": 8331,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5999999046325684,
+          "processingMs": 0
+        },
+        {
+          "name": "click",
+          "startTime": 1513.9000000953674,
+          "duration": 16,
+          "interactionId": 8331,
+          "target": "run-work",
+          "attributedToSave": true,
+          "inputDelay": 0.5999999046325684,
+          "processingMs": 1
+        }
+      ],
+      "trustedEvents": [
+        {
+          "name": "pointerdown",
+          "startTime": 1512.1000000238419,
+          "target": "run-work"
+        }
+      ],
+      "longTaskCount": 0,
+      "longTaskMs": 0,
+      "longTasks": [],
+      "contentReadyMs": 855.9000000953674,
+      "completionMs": 209.5,
+      "responseFrameMs": 34.300000071525574,
       "checksum": 876356119381.0818
     }
   ]

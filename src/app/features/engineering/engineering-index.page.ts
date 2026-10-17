@@ -3,6 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../core/seo.service';
 import { engineeringStudies } from '../../data/engineering-studies.data';
+import { writingPreviews } from '../../data/writing-previews.data';
 
 @Component({
   selector: 'app-engineering-index-page',
@@ -11,17 +12,16 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
     <section class="engineering-collection section-shell" aria-labelledby="collection-title">
       <header class="showcase-heading">
         <div>
-          <a class="article-back" routerLink="/" fragment="work">← Selected work</a>
-          <p class="showcase-kicker">Engineering studies</p>
-          <h1 id="collection-title">Decisions &amp; tradeoffs</h1>
+          <a class="article-back" routerLink="/" fragment="engineering">← Portfolio</a>
+          <p class="showcase-kicker">Ideas & engineering</p>
+          <h1 id="collection-title">Engineering & Writing</h1>
         </div>
         <p>
-          Technical investigations into how interfaces behave, where designs fail, and what the
-          evidence supports. Each study states whether it is a design proposal, a reconstruction, or
-          a working experiment.
+          Angular, frontend architecture and the browser platform. All studies and articles in one
+          collection.
         </p>
       </header>
-      <div class="engineering-filters" role="group" aria-label="Filter studies by category">
+      <div class="engineering-filters" role="group" aria-label="Filter publications by category">
         @for (category of categories; track category) {
           <button
             type="button"
@@ -33,24 +33,18 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
         }
       </div>
       <p class="engineering-count" role="status">
-        {{ filtered().length }} {{ filtered().length === 1 ? 'study' : 'studies' }}
+        {{ filtered().length }} {{ filtered().length === 1 ? 'publication' : 'publications' }}
       </p>
       <div class="engineering-index__grid">
-        @for (study of filtered(); track study.slug) {
-          <a class="engineering-card" [routerLink]="['/engineering', study.slug]">
+        @for (entry of filtered(); track entry.path) {
+          <a class="engineering-card" [routerLink]="entry.path">
             <div class="engineering-card__meta">
-              <span>{{ study.category }}</span>
-              <span>{{
-                study.experiment
-                  ? 'Lab experiment'
-                  : study.experience
-                    ? 'Case study'
-                    : 'Design study'
-              }}</span>
+              <span>{{ entry.category }}</span
+              ><span>{{ entry.kind }}</span>
             </div>
-            <h2>{{ study.title }}</h2>
-            <p>{{ study.summary }}</p>
-            <span class="engineering-card__link">Explore study <i aria-hidden="true">↗</i></span>
+            <h2>{{ entry.title }}</h2>
+            <p>{{ entry.summary }}</p>
+            <span class="engineering-card__link">Read more <i aria-hidden="true">↗</i></span>
           </a>
         }
       </div>
@@ -59,22 +53,29 @@ import { engineeringStudies } from '../../data/engineering-studies.data';
 })
 export class EngineeringIndexPage implements OnInit {
   private readonly seo = inject(SeoService);
-  readonly selected = signal('All studies');
-  readonly categories = [
-    'All studies',
-    ...new Set(engineeringStudies.map((study) => study.category)),
+  readonly entries = [
+    ...engineeringStudies.map((study) => ({
+      title: study.title,
+      summary: study.summary,
+      category: study.category,
+      kind: study.presentation === 'article' ? 'Article' : 'Study',
+      path: `/engineering/${study.slug}`,
+    })),
+    ...writingPreviews,
   ];
+  readonly selected = signal('All topics');
+  readonly categories = ['All topics', ...new Set(this.entries.map((entry) => entry.category))];
   readonly filtered = computed(() =>
-    engineeringStudies.filter(
-      (study) => this.selected() === 'All studies' || study.category === this.selected(),
+    this.entries.filter(
+      (entry) => this.selected() === 'All topics' || entry.category === this.selected(),
     ),
   );
 
   ngOnInit(): void {
     this.seo.update({
-      title: 'Engineering Studies — Vitalii Napastiuk',
+      title: 'Engineering & Writing — Vitalii Napastiuk',
       description:
-        'Frontend engineering investigations, working experiments, architectural decisions and their tradeoffs.',
+        'Angular, architecture, accessibility and web performance: studies and articles in one collection.',
       path: '/engineering',
     });
   }

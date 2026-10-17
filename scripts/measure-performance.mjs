@@ -1,3 +1,4 @@
+import { accumulateLayoutShift, observePerformance } from '../public/performance-lab/metrics.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
@@ -133,29 +134,12 @@ try {
   const viewport = { width: 390, height: 844, deviceScaleFactor: 1 };
   await command('Emulation.setDeviceMetricsOverride', { ...viewport, mobile: true });
   await command('Page.addScriptToEvaluateOnNewDocument', {
-    source: `
-    window.labMetrics = { lcpMs: null, cls: 0, interactionMs: null, interactionId: null, longTaskCount: 0, longTaskMs: 0 };
-    let sessionStart = 0, lastShift = 0, sessionValue = 0;
-    new PerformanceObserver(list => { for (const entry of list.getEntries()) { window.labMetrics.lcpMs = entry.startTime; window.labMetrics.lcpElement = entry.element?.id || entry.element?.tagName || null; } }).observe({ type: 'largest-contentful-paint', buffered: true });
-    new PerformanceObserver(list => { for (const entry of list.getEntries()) {
-      if (entry.hadRecentInput) continue;
-      if (entry.startTime - lastShift > 1000 || entry.startTime - sessionStart > 5000) { sessionValue = 0; sessionStart = entry.startTime; }
-      sessionValue += entry.value; lastShift = entry.startTime;
-      window.labMetrics.cls = Math.max(window.labMetrics.cls, sessionValue);
-    }}).observe({ type: 'layout-shift', buffered: true });
-    new PerformanceObserver(list => { for (const entry of list.getEntries()) {
-      window.labMetrics.longTaskCount++; window.labMetrics.longTaskMs += entry.duration;
-    }}).observe({ type: 'longtask', buffered: true });
-    new PerformanceObserver(list => { for (const entry of list.getEntries()) {
-      if (entry.interactionId && (window.labMetrics.interactionMs === null || entry.duration > window.labMetrics.interactionMs)) {
-        window.labMetrics.interactionMs = entry.duration; window.labMetrics.interactionId = entry.interactionId;
-      }
-    }}).observe({ type: 'event', buffered: true, durationThreshold: 16 });
-  `,
+    source: `${accumulateLayoutShift.toString()}; (${observePerformance.toString()})();`,
   });
+  const modes = ['baseline', 'optimized', 'delay-only', 'reservation-only', 'scheduling-only'];
   const runs = [];
   for (let pair = 0; pair < 5; pair++) {
-    for (const mode of pair % 2 ? ['optimized', 'baseline'] : ['baseline', 'optimized']) {
+    for (const mode of pair % 2 ? [...modes].reverse() : modes) {
       await command('Page.navigate', { url: `http://127.0.0.1:${port}/?mode=${mode}&run=${pair}` });
       // A fixed observation window captures the deliberately delayed content before interacting.
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -177,11 +161,12 @@ try {
       const metrics = await evaluate(`new Promise((resolve, reject) => {
         const deadline = performance.now() + 10000;
         const poll = () => {
-          if (document.body.dataset.completionMs) setTimeout(() => resolve({ ...window.labMetrics, completionMs: Number(document.body.dataset.completionMs), responseFrameMs: Number(document.body.dataset.responseFrameMs), checksum: Number(document.body.dataset.checksum) }), 250);
+          if (document.body.dataset.completionMs) setTimeout(() => resolve({ ...window.labMetrics, contentReadyMs: Number(document.body.dataset.contentReadyMs), completionMs: Number(document.body.dataset.completionMs), responseFrameMs: Number(document.body.dataset.responseFrameMs), checksum: Number(document.body.dataset.checksum) }), 250);
           else if (performance.now() > deadline) reject(new Error('Work did not finish'));
           else setTimeout(poll, 50);
         }; poll();
       })`);
+      assert.ok(metrics.contentReadyMs > 0, `${mode}: content readiness recorded`);
       assert.ok(metrics.lcpMs > 0, `${mode}: observed LCP`);
       assert.ok(metrics.responseFrameMs > 0, `${mode}: response frame observed`);
       assert.equal(
@@ -203,12 +188,43 @@ try {
   );
   const median = (values) => [...values].sort((a, b) => a - b)[Math.floor(values.length / 2)];
   const medians = Object.fromEntries(
-    ['baseline', 'optimized'].map((mode) => [
+    modes.map((mode) => [
       mode,
       Object.fromEntries(
-        ['lcpMs', 'cls', 'responseFrameMs', 'longTaskCount', 'longTaskMs', 'completionMs'].map(
-          (key) => [key, median(runs.filter((run) => run.mode === mode).map((run) => run[key]))],
-        ),
+        [
+          'lcpMs',
+          'cls',
+          'responseFrameMs',
+          'longTaskCount',
+          'longTaskMs',
+          'completionMs',
+          'contentReadyMs',
+        ].map((key) => [
+          key,
+          median(runs.filter((run) => run.mode === mode).map((run) => run[key])),
+        ]),
+      ),
+    ]),
+  );
+  const distributions = Object.fromEntries(
+    modes.map((mode) => [
+      mode,
+      Object.fromEntries(
+        Object.keys(medians[mode]).map((metric) => {
+          const values = runs.filter((run) => run.mode === mode).map((run) => run[metric]);
+          const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+          return [
+            metric,
+            {
+              min: Math.min(...values),
+              max: Math.max(...values),
+              mean,
+              sampleStandardDeviation: Math.sqrt(
+                values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (values.length - 1),
+              ),
+            },
+          ];
+        }),
       ),
     ]),
   );
@@ -219,7 +235,11 @@ try {
     fixtureSha256: createHash('sha256')
       .update(await readFile(path.join(lab, 'index.html')))
       .digest('hex'),
+    instrumentationSha256: createHash('sha256')
+      .update(await readFile(path.join(lab, 'metrics.mjs')))
+      .digest('hex'),
     fieldINP: null,
+    distributions,
     environment: {
       browser: version.product,
       platform: `${os.platform()} ${os.arch()}`,
@@ -229,7 +249,8 @@ try {
       network: 'Loopback, no network throttling',
       cache: 'Disabled; fresh navigation for each sample',
       repetitions: 5,
-      order: 'Paired; alternating first mode',
+      order:
+        'Five blocks of five conditions; reversed order on alternate blocks; no warm-up discarded',
       observationWindowMs: 1500,
       interaction:
         'One trusted CDP mouse click; handler start to second requestAnimationFrame callback, including one frame boundary; excludes input delay; not INP',

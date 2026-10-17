@@ -1,23 +1,37 @@
 # Performance scheduling lab
 
-This is an independently owned, synthetic experiment, not an employer case study or a benchmark of the portfolio application.
+Independently owned synthetic experiment, not an employer case study or a benchmark of the Angular portfolio shell.
 
-From the repository root, with Node 22 and Chrome installed:
+From the repository root, with Node 22, installed dependencies and Chrome:
 
 ```sh
 node scripts/measure-performance.mjs
 ```
 
-On systems where Chrome is installed elsewhere, set `CHROME_PATH` to the executable. The runner starts its own loopback server and temporary headless Chrome profile, then closes both. No new dependencies or external services are needed; fonts come from the repository’s installed dependencies. `public/performance-lab/results.json` is overwritten only after every run succeeds. The report records a SHA-256 hash of the fixture, checked by tests. After rerunning, update the quoted medians in src/app/data/web-performance.data.ts; tests check the prose against the report. Commit the fixture, study and report together when publishing new results.
+Set `CHROME_PATH` if Chrome is installed elsewhere. The runner uses a temporary profile and loopback server and closes both. Fonts come from installed npm packages. `results.json` is replaced atomically only after all samples succeed. Format the fixture and instrumentation **before** running: tests check their exact SHA-256 hashes. Update quoted study medians and the results table after rerunning; commit fixture, report and study together.
 
-The runner uses a 390 × 844 CSS-pixel mobile viewport, device scale factor 1, 4× CPU slowdown, disabled browser cache and no network throttling. It takes five fresh navigations per mode, pairs the runs, and alternates the first mode. There is no discarded warm-up. It waits 1.5 seconds, scrolls Save report into view, then performs one trusted mouse click and records after work completes plus 250 ms for observer delivery. Do not click or load the results table during measurement.
+Five conditions use identical 30-million-item checksum work:
 
-Baseline reveals the primary content after an artificial 800 ms delay without reserving space, then calculates a checksum over 30 million items in one task. Optimized reveals content immediately, reserves space and calculates the identical checksum in chunks of one million items, yielding through timers. The fixture uses the same Syne, Manrope and IBM Plex Mono fonts and visual palette as the portfolio. Fonts are served locally from the locked npm dependencies; run npm install first if they are missing. It remains an independent static page, without the Angular runtime or portfolio shell. Font loading is included in the observations. This compares scheduling strategies; it does not establish a production speedup or isolate the contribution of each individual change. Timer clamping and yielding can increase completion time.
+| Condition        | Content gate | Reserved slot | CPU work        |
+| ---------------- | ------------ | ------------- | --------------- |
+| baseline         | 800 ms       | No            | Blocking        |
+| optimized        | None         | Yes           | Yielding chunks |
+| delay-only       | None         | No            | Blocking        |
+| reservation-only | 800 ms       | Yes           | Blocking        |
+| scheduling-only  | 800 ms       | No            | Yielding chunks |
 
-LCP comes from the last Largest Contentful Paint entry before interaction. CLS is the maximum layout-shift session window (one-second gaps, five-second maximum), excluding shifts after recent input. Response-frame latency measures from the start of the click handler to the second requestAnimationFrame callback, crossing a frame boundary. It includes scheduling and frame overhead, excludes input delay, and is a presentation proxy rather than a paint timestamp. Event Timing durations are retained separately when the browser supplies them (16 ms reporting floor and rounding); absent entries remain null. Event Timing delivery can be sparse in headless runs; the report preserves missing samples without substituting the response-frame proxy. Neither value is **field INP**. Long tasks and total work-completion time are also retained in raw samples.
+The three “only” conditions change one baseline factor. Five blocks each visit all five conditions, reversing order on alternate blocks. All 25 raw samples are retained, including slow samples; there is no discarded warm-up. Medians, min/max, mean and sample standard deviation describe this run. Five repetitions do not justify population percentiles or confidence intervals.
 
-Medians summarize these five local runs; they are not field percentiles or confidence intervals. For real Core Web Vitals, collect representative real-user measurements and evaluate LCP ≤ 2.5 s, INP ≤ 200 ms and CLS ≤ 0.1 at the 75th percentile, separately for mobile and desktop. Browser version, CPU, thermal state, background activity and viewport affect results. Repeat the experiment on your own hardware; exact numbers will vary.
+Environment: 390 × 844 CSS pixels, device scale factor 1, mobile emulation, 4× CPU slowdown, disabled cache, loopback network with no network throttling. Font loading remains included. After 1.5 seconds the runner scrolls Save report into view and sends a trusted CDP click, then waits for work completion plus 250 ms observer delivery. Do not run builds or other CPU-heavy checks during collection. Hardware, thermals and background activity remain uncontrolled limits.
 
-Open `/performance-lab/?mode=baseline` or `/performance-lab/?mode=optimized` on the running portfolio to inspect the two modes manually. “Show recorded lab medians” loads the committed report on demand so its table cannot contaminate the automated run.
+LCP retains visible candidates created before the first trusted interaction. **Content readiness is separate:** reserving a slot can push delayed content outside the viewport and make a heading become LCP, even while the 800 ms gate remains. Inspect `lcpCandidates`, `lcpElement` and `contentReadyMs` together. CLS is the largest eligible shift session: gaps strictly less than one second, duration strictly less than five seconds from the first shift; recent-input shifts are excluded. Raw shifts are retained.
 
-The page also provides a guided replay, live progress and feedback/completion observations, and side-by-side code for content arrival, reserved layout space and cooperative work. Replay is a manual demonstration, not a replacement for fresh-navigation measurements: layout shifts shortly after input can be excluded from CLS. The controlled run never presses replay or loads the recorded table.
+`responseFrameMs` is handler start to the second requestAnimationFrame callback. It includes a frame boundary, excludes input delay and is neither a paint timestamp nor INP. Event Timing retains raw entries and attributes a duration only when the target is Save report and a trusted Save pointerdown is nearby. Missing entries remain **null**, not zero. `fieldINP` remains null. Long tasks and total completion time remain available: yielding can improve early feedback while making full completion slower.
+
+Open `/performance-lab/?mode=baseline` and try all five controls. Replay, progress feedback and the three code walkthroughs remain available. Replay shortly after input may produce shifts excluded from CLS; automated runs never press replay or load the recorded table. Assets use root-absolute paths so Firebase slash removal does not break fonts or reports.
+
+The Angular study separately embeds `app-angular-performance-lab`: 300 identical rows are replaced five times while tracking objects or stable IDs. It reports actual reused DOM nodes and elapsed ranges. This local diagnostic does not benchmark production Core Web Vitals or prove Signals/OnPush performance.
+
+The original unchanged two-mode rerun is preserved at `docs/engineering-studies/performance-baseline-results.json`. Additional controls change geometry; compare causal variations within the final report, not its CLS against the old fixture.
+
+References: [LCP](https://web.dev/articles/lcp), [CLS](https://web.dev/articles/cls), [INP optimization](https://web.dev/articles/optimize-inp), [Web Vitals](https://web.dev/articles/vitals), [Angular tracking](https://angular.dev/guide/templates/control-flow).
