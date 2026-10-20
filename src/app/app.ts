@@ -1,3 +1,4 @@
+import { RouteFocusDirective } from './animations/route-focus.directive';
 import { Component, inject } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
@@ -7,13 +8,19 @@ import { PointerPulseComponent } from './shared/pointer-pulse.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SiteFooterComponent, SiteHeaderComponent, PointerPulseComponent],
+  imports: [
+    RouteFocusDirective,
+    RouterOutlet,
+    SiteFooterComponent,
+    SiteHeaderComponent,
+    PointerPulseComponent,
+  ],
   template: `
     <a class="skip-link" [attr.href]="router.url.split('#')[0] + '#main-content'"
       >Skip to content</a
     >
     <app-site-header />
-    <main id="main-content" tabindex="-1"><router-outlet /></main>
+    <main appRouteFocus id="main-content" tabindex="-1"><router-outlet /></main>
     <app-site-footer />
     <app-pointer-pulse />
   `,

@@ -15,7 +15,7 @@ import { projectStudies } from '../../data/project-studies.data';
     @if (project(); as item) {
       <article class="project-study">
         <header class="project-study__header">
-          <a class="article-back" routerLink="/" fragment="work">← Selected work</a>
+          <a class="article-back" routerLink="/projects">← Independent Projects</a>
           <p class="eyebrow">{{ item.category }}</p>
           @if (item.featured) {
             <p class="study-featured">Featured product / Shipped on Android</p>
@@ -88,7 +88,7 @@ import { projectStudies } from '../../data/project-studies.data';
       <section class="not-found">
         <p class="eyebrow">Project unavailable</p>
         <h1>This project record is not public.</h1>
-        <a class="button button--primary" routerLink="/" fragment="work">Return to work</a>
+        <a class="button button--primary" routerLink="/projects">Independent Projects</a>
       </section>
     }
   `,

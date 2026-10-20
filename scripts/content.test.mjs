@@ -37,6 +37,13 @@ test('sitemap routes expose only the homepage and public detail content', () => 
   assert.deepEqual(buildRouteEntries([{ slug: 'article', date: '2026-01-01' }]), [
     { route: '', date: undefined },
     { route: 'engineering', date: undefined },
+    { route: 'projects', date: undefined },
+    { route: 'case-studies/angular-enterprise-architecture', date: undefined },
+    { route: 'case-studies/design-systems', date: undefined },
+    { route: 'case-studies/real-time-systems', date: undefined },
+    { route: 'case-studies/workflow-architecture', date: undefined },
+    { route: 'case-studies/ai-product-engineering', date: undefined },
+    { route: 'case-studies/computer-vision', date: undefined },
     { route: 'work/ts-reactivity-engine', date: undefined },
     { route: 'work/visual-kapital', date: undefined },
     { route: 'work/task-around-website', date: undefined },

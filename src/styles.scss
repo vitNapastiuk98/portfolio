@@ -1,3 +1,4 @@
+@use './professional-studies';
 @use '@fontsource/ibm-plex-mono/latin-400.css';
 @use '@fontsource/ibm-plex-mono/latin-500.css';
 @use './engineering-studies';
@@ -2917,9 +2918,9 @@ em {
   min-height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 44%, rgba(54, 85, 112, 0.58), transparent 31%),
-    radial-gradient(circle at 47% 39%, rgba(233, 154, 101, 0.12), transparent 21%),
-    linear-gradient(145deg, #101b26, var(--night) 68%);
+    radial-gradient(circle at 50% 44%, rgba(27, 40, 53, 0.42), transparent 31%),
+    radial-gradient(circle at 47% 39%, rgba(216, 86, 99, 0.08), transparent 21%),
+    linear-gradient(145deg, var(--night-soft), var(--night) 68%);
 }
 
 .hero::before {
@@ -2927,8 +2928,8 @@ em {
   z-index: 1;
   inset: 0;
   background-image:
-    linear-gradient(rgba(96, 230, 242, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 230, 242, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(205, 226, 239, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(205, 226, 239, 0.025) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black, transparent 72%);
   content: '';

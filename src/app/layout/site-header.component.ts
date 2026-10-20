@@ -60,8 +60,8 @@ export class SiteHeaderComponent {
   readonly profile = profile;
   readonly navigation = [
     { index: '01', label: 'Expertise', fragment: 'expertise' },
-    { index: '02', label: 'Work', fragment: 'work' },
-    { index: '03', label: 'Engineering & Writing', fragment: 'engineering' },
+    { index: '02', label: 'Selected Work', fragment: 'work' },
+    { index: '03', label: 'Studies & Writing', fragment: 'engineering' },
     { index: '04', label: 'Experience', fragment: 'experience' },
     { index: '05', label: 'Contact', fragment: 'contact' },
   ] as const;

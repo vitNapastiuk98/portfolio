@@ -17,6 +17,13 @@ const projectSlugs = [...sitemap.matchAll(/<loc>[^<]+\/work\/([^<]+)<\/loc>/g)].
 );
 const expected = [
   'engineering/index.html',
+  'projects/index.html',
+  'case-studies/angular-enterprise-architecture/index.html',
+  'case-studies/design-systems/index.html',
+  'case-studies/real-time-systems/index.html',
+  'case-studies/workflow-architecture/index.html',
+  'case-studies/ai-product-engineering/index.html',
+  'case-studies/computer-vision/index.html',
   'engineering/web-performance/index.html',
   'engineering/accessibility/index.html',
   'engineering/angular-architectures/index.html',
@@ -99,6 +106,21 @@ for (const url of urls) {
   if (url.pathname.startsWith('/blog/')) assert.ok(document.getElementById('blog-posting-schema'));
   if (url.pathname.startsWith('/engineering/'))
     assert.ok(document.getElementById('engineering-study-schema'));
+  if (url.pathname.startsWith('/case-studies/')) {
+    assert.ok(document.getElementById('professional-study-schema'));
+    assert.ok(
+      document.querySelectorAll('app-study-diagram svg').length > 0,
+      `${url}: architecture diagram`,
+    );
+    assert.ok(
+      document.querySelectorAll('.study-code').length > 0,
+      `${url}: implementation examples`,
+    );
+    assert.ok(
+      document.querySelectorAll('.study-section').length >= 9,
+      `${url}: substantial professional narrative`,
+    );
+  }
   if (url.pathname.startsWith('/work/') || url.pathname.startsWith('/engineering/')) {
     assert.ok(document.querySelectorAll('.study-section').length >= 3, `${url}: project narrative`);
     if (url.pathname.startsWith('/engineering/')) {

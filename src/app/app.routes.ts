@@ -12,6 +12,15 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home/home.page').then((module) => module.HomePage),
   },
   {
+    path: 'projects',
+    loadComponent: () => import('./features/projects/projects.page').then((m) => m.ProjectsPage),
+  },
+  {
+    path: 'case-studies/:slug',
+    loadComponent: () =>
+      import('./features/case-studies/case-study.page').then((m) => m.CaseStudyPage),
+  },
+  {
     path: 'engineering',
     loadComponent: () =>
       import('./features/engineering/engineering-index.page').then(

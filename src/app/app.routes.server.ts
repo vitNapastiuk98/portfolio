@@ -1,3 +1,4 @@
+import { professionalStudies } from './data/professional-studies.data';
 import type { ServerRoute } from '@angular/ssr';
 import { PrerenderFallback, RenderMode } from '@angular/ssr';
 import { blogPosts } from '../generated/blog-posts.generated';
@@ -5,6 +6,14 @@ import { publicProjects } from './data/projects.data';
 import { engineeringStudies } from './data/engineering-studies.data';
 
 export const serverRoutes: ServerRoute[] = [
+  {
+    path: 'case-studies/:slug',
+    renderMode: RenderMode.Prerender,
+    fallback: PrerenderFallback.None,
+    async getPrerenderParams() {
+      return professionalStudies.map(({ slug }) => ({ slug }));
+    },
+  },
   {
     path: 'engineering/:slug',
     renderMode: RenderMode.Prerender,

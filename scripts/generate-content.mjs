@@ -225,6 +225,15 @@ export function buildRouteEntries(posts) {
   return [
     { route: '', date: undefined },
     { route: 'engineering', date: undefined },
+    { route: 'projects', date: undefined },
+    ...[
+      'angular-enterprise-architecture',
+      'design-systems',
+      'real-time-systems',
+      'workflow-architecture',
+      'ai-product-engineering',
+      'computer-vision',
+    ].map((slug) => ({ route: `case-studies/${slug}`, date: undefined })),
     ...projectSlugs.map((slug) => ({ route: `work/${slug}`, date: undefined })),
     ...[
       'web-performance',

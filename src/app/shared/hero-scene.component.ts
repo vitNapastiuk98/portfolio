@@ -84,8 +84,8 @@ export class HeroSceneComponent {
       roughness: 0.2,
     });
     const signal = new THREE.MeshPhysicalMaterial({
-      color: 0xefa06b,
-      emissive: 0x51200b,
+      color: 0xd85663,
+      emissive: 0x471b25,
       emissiveIntensity: 0.75,
       metalness: 0.58,
       roughness: 0.2,
@@ -164,13 +164,13 @@ export class HeroSceneComponent {
     rig.add(spine);
 
     scene.add(new THREE.HemisphereLight(0x93a5bd, 0x070b12, 2.0));
-    const key = new THREE.DirectionalLight(0xffc7a2, 6.2);
+    const key = new THREE.DirectionalLight(0xf3dce0, 6.2);
     key.position.set(4.5, 5, 7);
     scene.add(key);
     const rim = new THREE.PointLight(0x6f9bd1, 19, 18);
     rim.position.set(-4.5, -1.5, 4);
     scene.add(rim);
-    const warm = new THREE.PointLight(0xefa06b, 12, 10);
+    const warm = new THREE.PointLight(0xd85663, 12, 10);
     warm.position.set(1.8, 1.2, 1.4);
     scene.add(warm);
 

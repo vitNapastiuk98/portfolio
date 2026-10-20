@@ -21,6 +21,10 @@ describe('HomePage', () => {
     expect(schema['@graph'][1].mainEntity.sameAs).toHaveLength(3);
 
     expect(root.querySelector('[data-section="hero"]')).toBeTruthy();
+    expect(root.querySelector('#home.hero[appHeroMotion]')).toBeTruthy();
+    expect(root.querySelectorAll('#home [data-hero-line]')).toHaveLength(2);
+    expect(root.querySelector('#home app-hero-scene[data-hero-scene]')).toBeTruthy();
+    expect(root.querySelector('#home .home-intro__body')).toBeNull();
     expect(root.querySelector('[data-section="about"]')).toBeFalsy();
     expect(root.querySelector('[data-section="expertise"]')).toBeTruthy();
     expect(root.querySelector('[data-section="work"]')).toBeTruthy();

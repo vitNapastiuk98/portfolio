@@ -1,9 +1,19 @@
+export interface StudyDiagram {
+  readonly id: string;
+  readonly title: string;
+  readonly caption: string;
+  readonly columns?: number;
+  readonly nodes: readonly { id: string; label: string; detail: string }[];
+  readonly edges: readonly { from: string; to: string; label?: string }[];
+}
+
 export interface StudySection {
   readonly id: string;
   readonly label: string;
   readonly title: string;
   readonly paragraphs: readonly string[];
   readonly bullets?: readonly string[];
+  readonly diagram?: StudyDiagram;
   readonly codeExamples?: readonly {
     readonly title: string;
     readonly language?: string;

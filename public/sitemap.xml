@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://vit-napastiuk.web.app/</loc></url>
   <url><loc>https://vit-napastiuk.web.app/engineering</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/projects</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/angular-enterprise-architecture</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/design-systems</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/real-time-systems</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/workflow-architecture</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/ai-product-engineering</loc></url>
+  <url><loc>https://vit-napastiuk.web.app/case-studies/computer-vision</loc></url>
   <url><loc>https://vit-napastiuk.web.app/work/ts-reactivity-engine</loc></url>
   <url><loc>https://vit-napastiuk.web.app/work/visual-kapital</loc></url>
   <url><loc>https://vit-napastiuk.web.app/work/task-around-website</loc></url>

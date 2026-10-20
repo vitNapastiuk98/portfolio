@@ -1,3 +1,4 @@
+import { StudyDiagramComponent } from './study-diagram.component';
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, input } from '@angular/core';
 import type { TemplateRef } from '@angular/core';
@@ -5,7 +6,7 @@ import type { StudyContent } from '../models/study.models';
 
 @Component({
   selector: 'app-study-body',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, StudyDiagramComponent],
   host: { class: 'study-body' },
   template: `
     <aside class="study-nav">
@@ -53,6 +54,9 @@ import type { StudyContent } from '../models/study.models';
                 <li>{{ bullet }}</li>
               }
             </ul>
+          }
+          @if (section.diagram; as diagram) {
+            <app-study-diagram [diagram]="diagram" />
           }
           @for (example of section.codeExamples ?? []; track example.title) {
             <div class="study-code">
